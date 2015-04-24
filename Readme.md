@@ -1,6 +1,6 @@
 # 使い方
 ```bash
-$ git clone --recursive https://github.com/tune/dotfiles.git
+$ git clone --recursive https://github.com/tunepolo/dotfiles.git
 $ cd dotfiles
 $ ./setup.sh
 ```
