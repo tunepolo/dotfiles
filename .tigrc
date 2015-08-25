@@ -4,17 +4,14 @@ bind diff h scroll-left
 
 bind generic g move-first-line
 bind generic G move-last-line
-bind generic ^F move-page-down
-bind generic ^B move-page-up
+bind generic <Ctrl-F> move-page-down
+bind generic <Ctrl-B> move-page-up
 
-set show-line-numbers = yes
-set show-author = yes
-set show-date = yes
-set show-refs = yes
-set show-rev-graph = yes
-set show-id = yes
-set show-changes = yes
+set blame-view = date:local author:full id line-number:true,interval=1 text
+set main-view = line-number:true,interval=10 date:local author:full id commit-title:true,graph=true,refs=true
+set refs-view = date:local author:full id ref:true commit-title:true
+set status-view = file-name status:long
+set tree-view = date:local author:full id file-size:unit mode file-name
 
 set line-graphics = utf-8
-set line-number-interval = 1
 
