@@ -138,7 +138,7 @@ filetype indent on
 filetype plugin on
 
 " 他のVimで開いているファイルを開こうとしたときポップアップさせる
-runtime macros/editexisting.vim
+" runtime macros/editexisting.vim
 
 " タブページの切り替えをCTRL+Tab SHIFT+Tabで行うように.
 if v:version >= 700
