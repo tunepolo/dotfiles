@@ -31,29 +31,12 @@ vimを起動したら`:NeoBundleInstall`を実行する。
     * .zshenv
     * .zshrc
 
-## 固有の設定は下記の名称のローカルファイルを作ってそこに書く
+## 固有の設定
+
+下記の名称のローカルファイルを作ってそこに書くこと。
 
 * .gitconfig.local
 * .vimrc.local
 * .zshrc.local
 
 gitのユーザ名、プロキシ設定は~/.gitconfig.localに記述すること。1.7.10以降のバージョンのgitが必要。
-
-
-# ツールの入手先
-
-* font
-	* [Ricty](https://github.com/yascentur/Ricty) 
-* git
-	* [tig](http://jonas.nitro.dk/tig/)
-	* [git-extras](https://github.com/visionmedia/git-extras)
-	* [legit](http://www.git-legit.org/)
-* zsh
-	* [autojump](https://github.com/joelthelion/autojump)
-* Utility
-	* [GNU GLOBAL](http://savannah.gnu.org/projects/global/)
-	* [jq](http://stedolan.github.io/jq/)
-	* [Mosh: the mobile shell](http://mosh.mit.edu/)
-	* [Pandoc](http://johnmacfarlane.net/pandoc/)
-	* [the_silver_searcher](https://github.com/ggreer/the_silver_searcher)
-

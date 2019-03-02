@@ -7,9 +7,7 @@ DOT_FILES=(
     .inputrc
     .minttyrc
     .pryrc
-    .screenrc
     .tigrc
-    .tmux.conf
     .vimrc
     .zshenv
     .zshrc
@@ -23,8 +21,3 @@ done
 # refresh path setting
 source ~/.zshenv
 source ~/.zshrc
-
-# Create .global_ignore for git
-gibo -u
-gibo Autotools C++ C Ruby Linux SVN VisualStudio Windows vim >> ~/.global_ignore
-
