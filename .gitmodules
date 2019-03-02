@@ -10,22 +10,6 @@
 	path = zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 	ignore = dirty
-[submodule "bin/gitignore-boilerplates"]
-	path = bin/gitignore-boilerplates
-	url = https://github.com/simonwhitaker/gitignore-boilerplates.git
-	ignore = dirty
-[submodule "bin/git-info"]
-	path = bin/git-info
-	url = https://github.com/gitbits/git-info.git
-	ignore = dirty
-[submodule "bin/git-cp"]
-	path = bin/git-cp
-	url = https://github.com/gitbits/git-cp.git
-	ignore = dirty
-[submodule "bin/git-submodule-misc"]
-	path = bin/git-submodule-misc
-	url = https://github.com/gitbits/git-submodule-misc.git
-	ignore = dirty
 [submodule "bin/git-delete-merged-branches"]
 	path = bin/git-delete-merged-branches
 	url = https://github.com/kyanny/git-delete-merged-branches
