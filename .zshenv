@@ -20,6 +20,7 @@ path=(
 /usr/X11R6/bin(N-/)
 $HOME/dotfiles/bin/*(N-/)
 $HOME/bin(N-/)
+$GOPATH/bin(N-/)
 )
 
 # sudo時のパスの設定
