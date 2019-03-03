@@ -3,6 +3,13 @@
 #====================================================================
 # Settig Environment Variable
 #====================================================================
+
+export LANG=ja_JP.UTF-8
+export HISTFILE=$HOME/.zhistory
+export HISTSIZE=100000
+export SAVEHIST=100000
+export GOPATH=$HOME/.go
+
 # 重複したパスを登録しない。
 typeset -U path
 
