@@ -26,3 +26,6 @@
 	path = zsh/zsh-bundle-exec
 	url = https://github.com/rhysd/zsh-bundle-exec
 	ignore = dirty
+[submodule "bin/git-open"]
+	path = bin/git-open
+	url = https://github.com/paulirish/git-open.git
