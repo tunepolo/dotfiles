@@ -62,14 +62,6 @@
 	autostash = true
 [help]
 	autocorrect = 1
-# git-browse-remote
-# http://subtech.g.hatena.ne.jp/motemen/20120917/1347889804
-[web]
-	browser = google-chrome
-[browse-remote "github.com"]
-	top = https://{host}/{path}
-	ref = https://{host}/{path}/tree/{short_ref}
-	rev = https://{host}/{path}/commit/{commit}
 [secrets]
 	providers = git secrets --aws-provider
 	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
