@@ -62,8 +62,6 @@
 	autostash = true
 [help]
 	autocorrect = 1
-[github]
-	user = tune
 # git-browse-remote
 # http://subtech.g.hatena.ne.jp/motemen/20120917/1347889804
 [web]
