@@ -2,10 +2,6 @@
 	path = zsh/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
 	ignore = dirty
-[submodule "bin/git-now"]
-	path = bin/git-now
-	url = https://github.com/toshi-kawanishi/git-now.git
-	ignore = dirty
 [submodule "zsh/zsh-syntax-highlighting"]
 	path = zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
