@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
 shellcheck \
-    shellcheck.sh
+    shellcheck.sh \
+    setup.sh

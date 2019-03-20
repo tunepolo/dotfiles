@@ -13,11 +13,13 @@ DOT_FILES=(
     .zshrc
 )
 
-for file in ${DOT_FILES[@]}
+for file in "${DOT_FILES[@]}"
 do
-    ln -s $HOME/dotfiles/$file $HOME/$file
+    ln -s "$HOME"/dotfiles/"$file" "$HOME"/"$file"
 done
 
-# refresh path setting
-source ~/.zshenv
-source ~/.zshrc
+# shellcheck disable=SC1090
+{
+    source ~/.zshenv
+    source ~/.zshrc
+}
