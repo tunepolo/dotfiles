@@ -13,9 +13,10 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Run shellcheck
-        command: bin/shellcheck.sh
+          name: Run shellcheck
+          command: bin/shellcheck.sh
 
 workflows:
   lint:
-    - shellcheck
+    jobs: 
+      - shellcheck
