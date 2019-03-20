@@ -1,7 +1,7 @@
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/core"
-tap "monochromegane/pt", pin: true
+tap "monochromegane/pt"
 brew "autoconf"
 brew "ghq"
 brew "git"
