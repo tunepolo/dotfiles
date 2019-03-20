@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run:
           name: Run shellcheck
-          command: bin/shellcheck.sh
+          command: ./shellcheck.sh
 
 workflows:
   lint:
