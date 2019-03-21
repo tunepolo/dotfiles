@@ -30,8 +30,20 @@ brew "vim"
 brew "zsh"
 brew "heroku/brew/heroku"
 brew "monochromegane/pt/pt"
-mas "Dash", id: 458034879
-mas "GarageBand", id: 682658836
+cask "appcleaner"
+cask "boostnote"
+cask "dash"
+cask "docker"
+cask "dropbox"
+cask "google-chrome"
+cask "google-drive-file-stream"
+cask "iterm2"
+cask "jasper"
+cask "kitematic"
+cask "qfinder-pro"
+cask "spotify"
+cask "visual-studio-code"
+cask "vlc"
 mas "Keynote", id: 409183694
 mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
