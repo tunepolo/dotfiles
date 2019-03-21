@@ -5,6 +5,7 @@ DOT_FILES=(
     .gitconfig
     .gvimrc
     .inputrc
+    .irbrc
     .minttyrc
     .pryrc
     .tigrc
