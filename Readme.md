@@ -30,4 +30,12 @@ $ brew bundle
 * .vimrc.local
 * .zshrc.local
 
-gitのユーザ名、プロキシ設定は~/.gitconfig.localに記述すること。1.7.10以降のバージョンのgitが必要。
+gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに記述する。
+
+```.gitconfig.local
+[user]
+  name = Yuichi TSUNEMATSU
+  email = tunepolo@gmail.com
+[credential]
+  helper = osxkeychain
+```
