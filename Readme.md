@@ -22,25 +22,6 @@ $ cd dotfiles
 $ brew bundle
 ```
 
-# 設定ファイル
-
-* git
-    * .gitconfig
-    * .global_ignore
-* .inputrc
-* .irbrc
-* .minttyrc
-* .pryrc
-* .screenrc
-* .tigrc
-* .tmux.conf
-* vim
-    * .vimrc
-    * .gvimrc
-* zsh
-    * .zshenv
-    * .zshrc
-
 ## 固有の設定
 
 下記の名称のローカルファイルを作ってそこに書くこと。
