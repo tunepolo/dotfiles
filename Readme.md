@@ -1,4 +1,7 @@
 # 使い方
+
+## 設定ファイルの配置
+
 ```bash
 $ git clone --recursive https://github.com/tunepolo/dotfiles.git
 $ cd dotfiles
@@ -11,6 +14,13 @@ $ git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
 vimを起動したら`:NeoBundleInstall`を実行する。
 
+## Homebrewを使ったツール・アプリケーションのインストール
+
+```bash
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ cd dotfiles
+$ brew bundle
+```
 
 # 設定ファイル
 
