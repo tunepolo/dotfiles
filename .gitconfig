@@ -33,7 +33,7 @@
 	dw = diff -w
 	dn = diff --name-only
 	dwd = diff --word-diff
-	diffr = diff --color-words --word-diff-regex='\\w+|[^[:space:]]''
+	diffr = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	f = fetch --prune
 	fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 	fs = !git f && git su
