@@ -6,10 +6,6 @@
 	path = zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 	ignore = dirty
-[submodule "bin/git-delete-merged-branches"]
-	path = bin/git-delete-merged-branches
-	url = https://github.com/kyanny/git-delete-merged-branches
-	ignore = dirty
 [submodule "zsh/z"]
 	path = zsh/z
 	url = https://github.com/rupa/z.git
