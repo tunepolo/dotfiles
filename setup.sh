@@ -8,6 +8,7 @@ DOT_FILES=(
     .irbrc
     .minttyrc
     .pryrc
+    .ptconfig.toml
     .tigrc
     .vimrc
     .zshenv
