@@ -25,6 +25,7 @@
 	br = browse-remote
 	cancel = !git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~
 	ci = commit
+	cloc = !cloc $(git ls-files)
 	co = checkout
 	d = diff
 	dc = diff --cached
