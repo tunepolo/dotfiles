@@ -22,7 +22,9 @@ $ cd dotfiles
 $ brew bundle
 ```
 
-## 固有の設定
+## 詳細設定
+
+### PC固有設定
 
 下記の名称のローカルファイルを作ってそこに書くこと。
 
@@ -39,3 +41,9 @@ gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに�
 [credential]
   helper = osxkeychain
 ```
+
+### Visual Studio Codeの設定
+
+Setting Sync拡張で設定を取得する。
+
+* [VSCode(Visual Studio Code)の設定を同期させる拡張機能「Setting Sync」が便利 | カレリエ](https://www.karelie.net/vscode-setting-sync/#vscodesetting_sync-7)
