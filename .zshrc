@@ -520,56 +520,6 @@ if is-at-least 4.3.9 && [ -f ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-h
 	source ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-
-# コマンドラインからWeb検索
-# http://qiita.com/items/55651f44f91123f1881c
-# url: $1, delimiter: $2, prefix: $3, words: $4..
-function web_search {
-local url=$1       && shift
-local delimiter=$1 && shift
-local prefix=$1    && shift
-local query
-
-while [ -n "$1" ]; do
-	if [ -n "$query" ]; then
-		query="${query}${delimiter}${prefix}$1"
-	else
-		query="${prefix}$1"
-	fi
-	shift
-done
-
-open "${url}${query}"
-}
-
-function qiita () {
-web_search "http://qiita.com/search?utf8=✓&q=" "+" "" $*
-}
-
-function google () {
-web_search "https://www.google.co.jp/search?&q=" "+" "" $*
-}
-
-# search in rurima
-function rurima () {
-web_search "http://rurema.clear-code.com" "/" "query:" $*
-}
-
-# search in rubygems
-function gems () {
-web_search "http://rubygems.org/search?utf8=✓&query=" "+" "" $*
-}
-
-# search in github
-function github () {
-web_search "https://github.com/search?type=Code&q=" "+" "" $*
-}
-
-# search in hatena bookmark
-function hatebu () {
-web_search "http://b.hatena.ne.jp/tune/search?q=" "+" "" $*
-}
-
 # セパレータを引く
 # http://qiita.com/items/674b8582772747ede9c3
 function separate(){
