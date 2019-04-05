@@ -2,6 +2,7 @@
 
 # Create symbolic link
 DOT_FILES=(
+    .gemrc
     .gitconfig
     .gvimrc
     .inputrc
