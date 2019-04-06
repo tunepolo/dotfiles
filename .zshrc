@@ -27,39 +27,11 @@ fi
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load
 
-# ls 時の色を設定する
-export CLICOLOR=true
-export LSCOLORS='exfxcxdxbxGxDxabagacad'
-export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
-
 # alias設定
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 
-# オプション設定
-[ -f ~/dotfiles/.zshrc.setopt ] && source ~/dotfiles/.zshrc.setopt
-
-# Enterキーでlsとgit statusを実行する
-# http://qiita.com/yuyuchu3333/items/e9af05670c95e2cc5b4d
-function do_enter() {
-    if [ -n "$BUFFER" ]; then
-        zle accept-line
-        return 0
-    fi
-    echo
-    ls -a
-    # ↓おすすめ
-    # ls_abbrev
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        echo -e "\e[0;33m--- git status ---\e[0m"
-        git status -sb
-        echo
-    fi
-    zle reset-prompt
-    return 0
-}
-zle -N do_enter
-bindkey '^m' do_enter
+# オプション・カスタマイズ設定
+[ -f ~/dotfiles/.zshrc.custom ] && source ~/dotfiles/.zshrc.custom
 
 # OS毎の設定
 case "${OSTYPE}" in
