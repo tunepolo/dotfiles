@@ -2,14 +2,8 @@
 # Setting Alias
 #====================================================================
 alias ls='ls -aF'
-alias sl=ls
 alias ll='ls -l'
 alias la='ls -a'
-alias lt='ls -trl'
-alias le=less
-alias bd='cd $OLDPWD'
-alias dc=cd
-alias clr='( setopt NULLGLOB; rm -f *~ .[^.]*~ ..*~ \#*\# )'
 alias grep='grep --color=always'
 alias j=jobs
 alias so="source ~/.zshrc"
@@ -19,9 +13,6 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias vi=vim
-
-# Vimのマクロを使ってハイライト
-alias vless='/usr/share/vim/vim73/macros/less.sh'
 
 #====================================================================
 # Setting Extension Alias
