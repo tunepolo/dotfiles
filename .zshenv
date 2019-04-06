@@ -7,7 +7,6 @@ export HISTFILE=$HOME/.zhistory
 export HISTSIZE=100000
 export LANG=ja_JP.UTF-8
 export SAVEHIST=100000
-export ZPLUG_HOME=/usr/local/opt/zplug
 
 # 重複したパスを登録しない。
 typeset -U path
