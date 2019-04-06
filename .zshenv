@@ -62,11 +62,3 @@ export LESS="-R"
 
 # エディタの設定
 export EDITOR=vim
-
-# 256色表示できているかの確認用
-function 256colortest() {
-local code
-for code in {0..255}; do
-	echo -e "\e[38;05;${code}m $code: Test"
-done
-}
