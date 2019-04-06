@@ -27,3 +27,25 @@ fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load --verbose
+
+# alias設定
+[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+
+# OS毎の設定
+case "${OSTYPE}" in
+cygwin*)
+	# Cygwin(Windows)
+	[ -f ~/dotfiles/.zshrc.cygwin ] && source ~/dotfiles/.zshrc.cygwin
+	;;
+darwin*)
+	# Mac(Unix)
+	[ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+	;;
+linux*)
+	# Linux
+	[ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+	;;
+esac
+
+## local固有設定
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

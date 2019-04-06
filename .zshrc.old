@@ -552,31 +552,8 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 
-# alias設定
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
-
 # z
 [ -f ~/dotfiles/zsh/z/z.sh ] && source ~/dotfiles/zsh/z/z.sh
 
 # zaw
 [ -f ~/dotfiles/zsh/zaw/zaw.sh ] && source ~/dotfiles/zsh/zaw/zaw.sh
-
-# OS毎の設定
-case "${OSTYPE}" in
-cygwin*)
-	# Cygwin(Windows)
-	[ -f ~/dotfiles/.zshrc.cygwin ] && source ~/dotfiles/.zshrc.cygwin
-	;;
-darwin*)
-	# Mac(Unix)
-	[ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
-	;;
-linux*)
-	# Linux
-	[ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
-	;;
-esac
-
-## local固有設定
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
