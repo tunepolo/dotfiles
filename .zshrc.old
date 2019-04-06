@@ -269,8 +269,6 @@ esac
 #====================================================================
 # Completion
 #====================================================================
-# zsh-completionsを利用する Github => zsh-completions
-fpath=(~/dotfiles/zsh/zsh-completions $fpath)
 
 autoload -U compinit; compinit
 zstyle ':completion:*:default' menu select=2
@@ -509,49 +507,3 @@ setopt long_list_jobs
 setopt equals
 #setopt xtrace
 setopt transient_rprompt
-
-
-#=============================
-# source zsh-syntax-highlighting
-#=============================
-if is-at-least 4.3.9 && [ -f ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-	source ~/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-# セパレータを引く
-# http://qiita.com/items/674b8582772747ede9c3
-function separate(){
-	echo -n $fg_bold[green]
-	for i in $(seq 1 $COLUMNS); do
-		echo -n '~'
-	done
-	echo -n $reset_color
-}
-
-# Enterキーでlsとgit statusを実行する
-# http://qiita.com/yuyuchu3333/items/e9af05670c95e2cc5b4d
-function do_enter() {
-    if [ -n "$BUFFER" ]; then
-        zle accept-line
-        return 0
-    fi
-    echo
-    ls -a
-    # ↓おすすめ
-    # ls_abbrev
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        echo -e "\e[0;33m--- git status ---\e[0m"
-        git status -sb
-    fi
-    zle reset-prompt
-    return 0
-}
-zle -N do_enter
-bindkey '^m' do_enter
-
-# z
-[ -f ~/dotfiles/zsh/z/z.sh ] && source ~/dotfiles/zsh/z/z.sh
-
-# zaw
-[ -f ~/dotfiles/zsh/zaw/zaw.sh ] && source ~/dotfiles/zsh/zaw/zaw.sh

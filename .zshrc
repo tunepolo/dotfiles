@@ -1,20 +1,18 @@
+# zplugの初期設定
 [ -f "$ZPLUG_HOME/init.zsh" ] || brew install zplug
 source $ZPLUG_HOME/init.zsh
 
+# コマンドプロンプトの設定
 autoload -U promptinit; promptinit
 prompt pure
 
-setopt auto_cd
-
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting'
+# プラグインのインストール・設定
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
 zplug "rupa/z", use:"*.sh"
 
+# CLIツールのインストール・設定
 zplug "paulirish/git-open", as:plugin
-
-: "sshコマンド補完を~/.ssh/configから行う" && {
-  function _ssh { compadd $(fgrep 'Host ' ~/.ssh/*/config | grep -v '*' |  awk '{print $2}' | sort) }
-}
 
 # 未インストール項目をインストールする
 if ! zplug check --verbose; then
@@ -25,10 +23,32 @@ if ! zplug check --verbose; then
 fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load --verbose
+zplug load
 
 # alias設定
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+
+# Enterキーでlsとgit statusを実行する
+# http://qiita.com/yuyuchu3333/items/e9af05670c95e2cc5b4d
+function do_enter() {
+    if [ -n "$BUFFER" ]; then
+        zle accept-line
+        return 0
+    fi
+    echo
+    ls -a
+    # ↓おすすめ
+    # ls_abbrev
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+        echo
+        echo -e "\e[0;33m--- git status ---\e[0m"
+        git status -sb
+    fi
+    zle reset-prompt
+    return 0
+}
+zle -N do_enter
+bindkey '^m' do_enter
 
 # OS毎の設定
 case "${OSTYPE}" in
@@ -46,5 +66,5 @@ linux*)
 	;;
 esac
 
-## local固有設定
+## local固有設定を読み込み
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
