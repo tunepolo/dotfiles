@@ -1,3 +1,5 @@
+autoload -U promptinit; promptinit
+
 # zplugの初期設定
 source $ZPLUG_HOME/init.zsh
 
