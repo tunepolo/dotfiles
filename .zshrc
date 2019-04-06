@@ -1,10 +1,8 @@
 # zplugの初期設定
-[ -f "$ZPLUG_HOME/init.zsh" ] || brew install zplug
 source $ZPLUG_HOME/init.zsh
 
 # コマンドプロンプトの設定
-autoload -U promptinit; promptinit
-prompt pure
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
 # プラグインのインストール・設定
 zplug "zsh-users/zsh-completions"
