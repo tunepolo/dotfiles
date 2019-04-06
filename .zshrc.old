@@ -1,5 +1,3 @@
-# ~tune/.zshrc
-
 export USER=$USERNAME
 export HOSTNAME=$HOST
 export GIT_MERGE_AUTOEDIT=no

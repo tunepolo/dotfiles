@@ -1,4 +1,3 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
 [ -f "$ZPLUG_HOME/init.zsh" ] || brew install zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -7,11 +6,11 @@ prompt pure
 
 setopt auto_cd
 
-zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug "rupa/z", use:"*.sh"
+
 zplug "paulirish/git-open", as:plugin
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 : "sshコマンド補完を~/.ssh/configから行う" && {
   function _ssh { compadd $(fgrep 'Host ' ~/.ssh/*/config | grep -v '*' |  awk '{print $2}' | sort) }
