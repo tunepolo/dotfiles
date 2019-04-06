@@ -15,6 +15,11 @@ if command -v go &> /dev/null; then
   export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 fi
 
+# Load rbenv
+if [ -e "$HOME/.rbenv" ]; then
+  eval "$(rbenv init -)"
+fi
+
 # 重複したパスを登録しない。
 typeset -U path
 
