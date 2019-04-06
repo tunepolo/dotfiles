@@ -8,6 +8,3 @@ npm install -g pure-prompt
 
 # Insall Vue CLI & Development Tools
 npm install -g vue-cli
-
-# Useful npm command install
-npm install -g git-open
