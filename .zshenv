@@ -1,14 +1,12 @@
-# ~tune/.zshenv
-
 #====================================================================
 # Settig Environment Variable
 #====================================================================
 
-export LANG=ja_JP.UTF-8
+export GOPATH=$HOME/.go
 export HISTFILE=$HOME/.zhistory
 export HISTSIZE=100000
+export LANG=ja_JP.UTF-8
 export SAVEHIST=100000
-export GOPATH=$HOME/.go
 
 # 重複したパスを登録しない。
 typeset -U path
@@ -58,42 +56,12 @@ else
 	alias sudo="sudo env PATH=\"$SUDO_PATH:$PATH\""
 fi
 
-export MANPATH=/opt/local/man:$MANPATH
-
-# ページャの設定
-if type lv > /dev/null 2>&1; then
-	## lvを優先する。
-	export PAGER="lv"
-else
-	## lvがなかったらlessを使う。
-	export PAGER="less"
-fi
-
-# lvの設定
-## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
-## -l: 1行が長くと折り返されていても1行として扱う。
-##     （コピーしたときに余計な改行を入れない。）
-export LV="-c -l"
-
-if [ "$PAGER" != "lv" ]; then
-	## lvがなくてもlvでページャーを起動する。
-	alias lv="$PAGER"
-fi
-
 # lessの設定
 ## -R: ANSIエスケープシーケンスのみ素通しする。
-## 2012-09-04
 export LESS="-R"
 
 # エディタの設定
 export EDITOR=vim
-## vimがなくてもvimでviを起動する。
-if ! type vim > /dev/null 2>&1; then
-	alias vim=vi
-fi
-# bundleで開くときのエディタもvim
-# http://qiita.com/items/ef78f8b0c9767fe60fcc
-export BUNDLER_EDITOR=vim
 
 # 256色表示できているかの確認用
 function 256colortest() {
@@ -102,4 +70,3 @@ for code in {0..255}; do
 	echo -e "\e[38;05;${code}m $code: Test"
 done
 }
-
