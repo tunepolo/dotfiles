@@ -11,6 +11,7 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 # プラグインのインストール・設定
 zplug "chrissicool/zsh-256color"
 zplug "rupa/z", use:"*.sh"
+zplug "simonwhitaker/gibo", use:'gibo-completion.zsh', as:plugin, if:"(( $+commands[gibo] ))", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 
