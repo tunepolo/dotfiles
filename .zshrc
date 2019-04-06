@@ -10,9 +10,10 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
 # プラグインのインストール・設定
 zplug "chrissicool/zsh-256color"
+zplug "plugins/docker-compose", from:oh-my-zsh, defer:2, if:"(( $+commands[docker-compose] ))"
+zplug "zsh-users/zsh-completions"
 zplug "rupa/z", use:"*.sh"
 zplug "simonwhitaker/gibo", use:'gibo-completion.zsh', as:plugin, if:"(( $+commands[gibo] ))", defer:2
-zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 
 # CLIツールのインストール・設定
