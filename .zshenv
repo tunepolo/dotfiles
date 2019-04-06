@@ -2,11 +2,18 @@
 # Settig Environment Variable
 #====================================================================
 
-export GOPATH=$HOME/.go
 export HISTFILE=$HOME/.zhistory
 export HISTSIZE=100000
 export LANG=ja_JP.UTF-8
 export SAVEHIST=100000
+
+# Set GOPATH for Go
+if command -v go &> /dev/null; then
+  [ -d "$HOME/.go" ] || mkdir "$HOME/.go"
+  export GOPATH="$HOME/.go"
+  export GOROOT=/usr/local/opt/go/libexec
+  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+fi
 
 # 重複したパスを登録しない。
 typeset -U path
