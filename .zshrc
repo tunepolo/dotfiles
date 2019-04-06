@@ -8,9 +8,10 @@ source $ZPLUG_HOME/init.zsh
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
 # プラグインのインストール・設定
+zplug "chrissicool/zsh-256color"
+zplug "rupa/z", use:"*.sh"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "rupa/z", use:"*.sh"
 
 # CLIツールのインストール・設定
 zplug "paulirish/git-open", as:plugin
