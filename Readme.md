@@ -3,7 +3,7 @@
 ## 設定ファイルの配置
 
 ```bash
-$ git clone --recursive https://github.com/tunepolo/dotfiles.git
+$ git clone https://github.com/tunepolo/dotfiles.git
 $ cd dotfiles
 $ ./setup.sh
 ```
