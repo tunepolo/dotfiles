@@ -32,16 +32,13 @@ $ brew bundle
 * .vimrc.local
 * .zshrc.local
 
-XXenv系の設定、ZPLUG_HOMEの設定は~/.zshrc.localに記述する。
+XXenv系の設定は~/.zshrc.localに記述する。
 
 ```.zshrc.local
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-# zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-```
+\```
 
 gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに記述する。
 
