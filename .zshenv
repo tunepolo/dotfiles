@@ -7,19 +7,6 @@ export HISTSIZE=100000
 export LANG=ja_JP.UTF-8
 export SAVEHIST=100000
 
-# Set GOPATH for Go
-if command -v go &> /dev/null; then
-  [ -d "$HOME/.go" ] || mkdir "$HOME/.go"
-  export GOPATH="$HOME/.go"
-  export GOROOT=/usr/local/opt/go/libexec
-  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
-fi
-
-# Load rbenv
-if [ -e "$HOME/.rbenv" ]; then
-  eval "$(rbenv init -)"
-fi
-
 # 重複したパスを登録しない。
 typeset -U path
 
@@ -37,7 +24,6 @@ path=(
 /usr/X11R6/bin(N-/)
 $HOME/dotfiles/bin/*(N-/)
 $HOME/bin(N-/)
-$GOPATH/bin(N-/)
 )
 
 # sudo時のパスの設定
@@ -66,6 +52,19 @@ if [ $(id -u) -eq 0 ]; then
 else
 	# 一般ユーザーの場合はsudo時にsudo用のパスをPATHに加える。
 	alias sudo="sudo env PATH=\"$SUDO_PATH:$PATH\""
+fi
+
+# Set GOPATH for Go
+if command -v go &> /dev/null; then
+  [ -d "$HOME/.go" ] || mkdir "$HOME/.go"
+  export GOPATH="$HOME/.go"
+  export GOROOT=/usr/local/opt/go/libexec
+  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+fi
+
+# Load rbenv
+if [ -e "$HOME/.rbenv" ]; then
+  eval "$(rbenv init -)"
 fi
 
 # lessの設定
