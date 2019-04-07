@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/tunepolo/dotfiles.svg?style=svg)](https://circleci.com/gh/tunepolo/dotfiles)
+
 # 使い方
 
 ## 設定ファイルの配置
@@ -9,9 +11,11 @@ $ ./setup.sh
 ```
 
 vimを起動する前にNeoBundleをインストールしておく。
+
 ```bash
 $ git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
+
 vimを起動したら`:NeoBundleInstall`を実行する。
 
 ## Homebrewを使ったツール・アプリケーションのインストール
