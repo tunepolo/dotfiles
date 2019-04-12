@@ -2,7 +2,7 @@
 # Setting Options
 #====================================================================
 setopt always_last_prompt    # カーソル位置は保持したままファイル名一覧を順次その場で表示
-setopt append_history
+setopt append_history        # 毎回 .zsh_history を作るのではなく履歴を追加
 setopt auto_cd               # ディレクトリと解釈できる文字列を打てばcdできる
 setopt auto_list             # 補完候補が複数ある時に、一覧表示
 setopt auto_menu             # 補完キー連打で順に補完候補を自動で補完
