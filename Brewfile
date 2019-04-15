@@ -47,7 +47,6 @@ cask "postman"
 cask "qfinder-pro"
 cask "sequel-pro"
 cask "spotify"
-cask "station"
 cask "visual-studio-code"
 cask "vlc"
 mas "com.apple.dt.Xcode", id: 497799835
