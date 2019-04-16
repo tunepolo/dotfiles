@@ -54,6 +54,13 @@ setopt sun_keyboard_hack
 setopt transient_rprompt
 
 #====================================================================
+# 補完
+#====================================================================
+
+# AWS CLI
+[ -f /usr/local/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
+
+#====================================================================
 # その他カスタマイズ
 #====================================================================
 
