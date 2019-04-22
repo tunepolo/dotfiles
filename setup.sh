@@ -4,7 +4,6 @@
 DOT_FILES=(
     .gemrc
     .gitconfig
-    .gvimrc
     .inputrc
     .irbrc
     .minttyrc
@@ -22,4 +21,3 @@ do
 done
 
 ./npm_install.sh
-

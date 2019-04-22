@@ -1,16 +1,15 @@
-" neobunlde.vimで管理してるpluginを読み込む
-source ~/dotfiles/.vimrc.bundle
+" dein.vimで管理してるpluginを読み込む
+source ~/dotfiles/vim/dein.vim
 
 " 基本設定
-source ~/dotfiles/.vimrc.basic
+source ~/dotfiles/vim/basic.vim
 
 " 外観設定
-source ~/dotfiles/.vimrc.appearance
-source ~/dotfiles/.vimrc.tab
+source ~/dotfiles/vim/appearance.vim
+source ~/dotfiles/vim/tab.vim
 
 " プラグイン設定
-source ~/dotfiles/.vimrc.plugin_setting
-" source ~/dotfiles/.vimrc.plugin_setting.neocomplcache
+source ~/dotfiles/vim/plugin_setting.vim
 
 " ローカル設定
 if filereadable(expand('~/.vimrc.local'))
