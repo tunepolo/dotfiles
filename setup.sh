@@ -4,7 +4,6 @@
 DOT_FILES=(
     .gemrc
     .gitconfig
-    .gvimrc
     .inputrc
     .irbrc
     .minttyrc
