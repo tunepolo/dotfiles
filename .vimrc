@@ -1,5 +1,5 @@
-" neobunlde.vimで管理してるpluginを読み込む
-source ~/dotfiles/vim/bundle.vim
+" dein.vimで管理してるpluginを読み込む
+source ~/dotfiles/vim/dein.vim
 
 " 基本設定
 source ~/dotfiles/vim/basic.vim
