@@ -24,24 +24,24 @@ zplug check --verbose || zplug install
 zplug load
 
 # alias設定
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+[ -f ~/dotfiles/zsh/alias.zsh ] && source ~/dotfiles/zsh/alias.zsh
 
 # オプション・カスタマイズ設定
-[ -f ~/dotfiles/.zshrc.custom ] && source ~/dotfiles/.zshrc.custom
+[ -f ~/dotfiles/zsh/custom.zsh ] && source ~/dotfiles/zsh/custom.zsh
 
 # OS毎の設定
 case "${OSTYPE}" in
 cygwin*)
 	# Cygwin(Windows)
-	[ -f ~/dotfiles/.zshrc.cygwin ] && source ~/dotfiles/.zshrc.cygwin
+	[ -f ~/dotfiles/zsh/cygwin.zsh ] && source ~/dotfiles/zsh/cygwin.zsh
 	;;
 darwin*)
 	# Mac(Unix)
-	[ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+	[ -f ~/dotfiles/zsh/osx.zsh ] && source ~/dotfiles/zsh/osx.zsh
 	;;
 linux*)
 	# Linux
-	[ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+	[ -f ~/dotfiles/zsh/linux.zsh ] && source ~/dotfiles/zsh/linux.zsh
 	;;
 esac
 
