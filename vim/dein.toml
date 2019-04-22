@@ -1,5 +1,14 @@
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'Shougo/dein.vim'
+
+# カーソル位置のコンテキストに合わせてftを切り替える
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+# カーソル位置のコンテキストのftを判定するライブラリ
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
 
 # 括弧などの入力補助
 [[plugins]]
@@ -59,3 +68,15 @@ repo = 'itchyny/lightline.vim'
 # j/k移動を加速
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
+
+# vimからGitを操作
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+# Gitの追加/削除/変更された行を行番号の左に表示し
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+# カラースキーマ
+[[plugins]]
+repo = 'tomasr/molokai'
