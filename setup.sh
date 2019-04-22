@@ -21,4 +21,3 @@ do
 done
 
 ./npm_install.sh
-
