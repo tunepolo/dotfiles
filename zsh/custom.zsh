@@ -15,7 +15,6 @@ setopt auto_resume
 setopt bang_hist
 setopt bg_nice
 setopt cd_able_vars
-setopt cdable_vars
 setopt chase_links           # シンボリックリンクは実体を追うようになる
 setopt check_jobs
 setopt complete_in_word      # 語の途中でもカーソル位置で補完
