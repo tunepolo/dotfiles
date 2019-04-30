@@ -57,6 +57,10 @@ setopt transient_rprompt
 # 補完
 #====================================================================
 
+autoload -U compinit
+compinit
+zstyle ':completion:*:default' menu select=1
+
 # AWS CLI
 [ -f /usr/local/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
