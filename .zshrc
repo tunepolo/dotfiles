@@ -15,6 +15,7 @@ zplug "zsh-users/zsh-completions"
 zplug "rupa/z", use:"*.sh"
 zplug "simonwhitaker/gibo", use:'gibo-completion.zsh', as:plugin, if:"(( $+commands[gibo] ))", defer:2
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "lukechilds/zsh-better-npm-completion", defer:2
 
 # CLIツールのインストール・設定
 zplug "paulirish/git-open", as:plugin
