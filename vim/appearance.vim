@@ -114,14 +114,17 @@ autocmd! FileType markdown hi! def link markdownItalic LineNr
 
 " Markdown内部を色づけ
 let g:markdown_fenced_languages = [
-  \  'coffee',
+  \  'c',
   \  'css',
+  \  'erb=eruby',
   \  'javascript',
   \  'js=javascript',
   \  'json=javascript',
+  \  'php',
   \  'ruby',
   \  'sass',
   \  'xml',
+  \  'zsh'
   \]
 
 " コマンド実行中は再描画しない
