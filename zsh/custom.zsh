@@ -6,7 +6,7 @@ setopt append_history        # 毎回 .zsh_history を作るのではなく履�
 setopt auto_cd               # ディレクトリと解釈できる文字列を打てばcdできる
 setopt auto_list             # 補完候補が複数ある時に、一覧表示
 setopt auto_menu             # 補完キー連打で順に補完候補を自動で補完
-setopt auto_name_dirs
+setopt auto_name_dirs        # "~$var" でディレクトリにアクセス
 setopt auto_param_keys       # カッコの対応などを自動的に補完
 setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
 setopt auto_pushd
