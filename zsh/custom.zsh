@@ -9,7 +9,7 @@ setopt auto_menu             # 補完キー連打で順に補完候補を自動�
 setopt auto_name_dirs        # "~$var" でディレクトリにアクセス
 setopt auto_param_keys       # カッコの対応などを自動的に補完
 setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
-setopt auto_pushd
+setopt auto_pushd            # ディレクトリ移動時に元のディレクトリを自動でスタックに積む
 setopt auto_remove_slash
 setopt auto_resume
 setopt bang_hist
