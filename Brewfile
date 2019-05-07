@@ -62,6 +62,7 @@ mas "com.apple.iWork.Keynote", id: 409183694
 mas "com.apple.iWork.Numbers", id: 409203825
 mas "com.apple.iWork.Pages", id: 409201541
 mas "com.readitlater.PocketMac", id: 568494494
+mas "com.ridiculousfish.HexFiend", id: 1342896380
 mas "com.tinyspeck.slackmacgap", id: 803453959
 mas "cx.c3.theunarchiver", id: 425424353
 mas "jp.naver.line.mac", id: 539883307
