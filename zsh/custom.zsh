@@ -11,7 +11,7 @@ setopt auto_param_keys       # カッコの対応などを自動的に補完
 setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
 setopt auto_pushd            # ディレクトリ移動時に元のディレクトリを自動でスタックに積む
 setopt auto_remove_slash     # 補完で補われたスラッシュが状況に応じてが自動的に削除される
-setopt auto_resume
+setopt auto_resume           # サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
 setopt bang_hist
 setopt bg_nice
 setopt cd_able_vars
