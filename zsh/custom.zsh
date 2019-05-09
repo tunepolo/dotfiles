@@ -12,7 +12,7 @@ setopt auto_param_slash      # ディレクトリ名の補完で末尾の / を�
 setopt auto_pushd            # ディレクトリ移動時に元のディレクトリを自動でスタックに積む
 setopt auto_remove_slash     # 補完で補われたスラッシュが状況に応じてが自動的に削除される
 setopt auto_resume           # サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
-setopt bang_hist
+setopt bang_hist             # cshスタイルのヒストリ拡張を使う
 setopt bg_nice
 setopt cd_able_vars
 setopt chase_links           # シンボリックリンクは実体を追うようになる
