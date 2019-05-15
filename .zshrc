@@ -62,5 +62,10 @@ if [ -e "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
 fi
 
+# Load direnv
+if type direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
 ## local固有設定を読み込み
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
