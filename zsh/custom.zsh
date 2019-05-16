@@ -127,6 +127,14 @@ fi
 [ -f /usr/local/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
 #====================================================================
+# Keybinding
+#====================================================================
+bindkey -v
+
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+#====================================================================
 # その他カスタマイズ
 #====================================================================
 
