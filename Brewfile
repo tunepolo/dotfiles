@@ -5,6 +5,7 @@ tap "homebrew/core"
 tap "songmu/tap"
 brew "autoconf"
 brew "automake"
+brew "python"
 brew "awscli"
 brew "cloc"
 brew "composer"
@@ -67,14 +68,15 @@ cask "qfinder-pro"
 cask "sequel-pro"
 cask "spotify"
 cask "station"
+cask "townwifi"
 cask "visual-studio-code"
 cask "vlc"
-mas "com.apple.dt.Xcode", id: 497799835
-mas "com.apple.iWork.Keynote", id: 409183694
-mas "com.apple.iWork.Numbers", id: 409203825
-mas "com.apple.iWork.Pages", id: 409201541
-mas "com.readitlater.PocketMac", id: 568494494
-mas "com.ridiculousfish.HexFiend", id: 1342896380
-mas "com.tinyspeck.slackmacgap", id: 803453959
-mas "cx.c3.theunarchiver", id: 425424353
-mas "jp.naver.line.mac", id: 539883307
+mas "Hex Fiend", id: 1342896380
+mas "Keynote", id: 409183694
+mas "LINE", id: 539883307
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Pocket", id: 568494494
+mas "Slack", id: 803453959
+mas "The Unarchiver", id: 425424353
+mas "Xcode", id: 497799835
