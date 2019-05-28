@@ -54,11 +54,11 @@ cask "adoptopenjdk"
 cask "alfred"
 cask "appcleaner"
 cask "boostnote"
+cask "cheatsheet"
 cask "clipy"
 cask "dash"
 cask "docker"
 cask "dropbox"
-cask "google-chrome"
 cask "google-photos-backup-and-sync"
 cask "graphiql"
 cask "iterm2"
@@ -75,6 +75,7 @@ cask "visual-studio-code"
 cask "vlc"
 mas "Hex Fiend", id: 1342896380
 mas "Keynote", id: 409183694
+mas "Lightshot Screenshot", id: 526298438
 mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
