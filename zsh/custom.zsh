@@ -16,7 +16,7 @@ setopt bang_hist             # cshスタイルのヒストリ拡張を使う
 setopt bg_nice               # バックグラウンドジョブの優先度を下げる(0->5)
 setopt cd_able_vars
 setopt chase_links           # シンボリックリンクは実体を追うようになる
-setopt check_jobs
+setopt check_jobs            # zsh終了時に、バックグラウンドジョブや停止中のジョブを表示する
 setopt complete_in_word      # 語の途中でもカーソル位置で補完
 setopt correct               # コマンドのスペルチェックをする
 setopt correct_all           # コマンドライン全てのスペルチェックをする
