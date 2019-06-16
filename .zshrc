@@ -4,6 +4,9 @@ autoload -U promptinit; promptinit
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
+# zplugをzplugで管理
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
 # コマンドプロンプトの設定
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
