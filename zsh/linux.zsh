@@ -6,5 +6,3 @@ alias ls="ls -AF --color"
 # source-highlightをインストールする必要あり
 export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 export LESSOPEN='| /usr/share/source-highlight/src-hilite-lesspipe.sh %s'
-
-

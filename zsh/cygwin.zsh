@@ -9,4 +9,3 @@ hash -d desktop="$(cygpath --desktop)"
 # source-highlightをインストールする必要あり
 export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 export LESSOPEN='| /bin/src-hilite-lesspipe.sh %s'
-

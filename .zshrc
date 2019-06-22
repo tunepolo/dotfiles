@@ -1,4 +1,5 @@
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 
 # zplugの初期設定
 export ZPLUG_HOME=/usr/local/opt/zplug
@@ -52,22 +53,22 @@ linux*)
 esac
 
 # Set GOPATH for Go
-if command -v go &> /dev/null; then
-  [ -d "$HOME/.go" ] || mkdir "$HOME/.go"
-  export GOPATH="$HOME/.go"
-  export GOROOT=/usr/local/opt/go/libexec
-  export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+if command -v go &>/dev/null; then
+	[ -d "$HOME/.go" ] || mkdir "$HOME/.go"
+	export GOPATH="$HOME/.go"
+	export GOROOT=/usr/local/opt/go/libexec
+	export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 fi
 
 # Load rbenv
 if [ -e "$HOME/.rbenv" ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	eval "$(rbenv init -)"
 fi
 
 # Load direnv
 if type direnv >/dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
+	eval "$(direnv hook zsh)"
 fi
 
 ## local固有設定を読み込み
