@@ -66,6 +66,12 @@ if [ -e "$HOME/.rbenv" ]; then
 	eval "$(rbenv init -)"
 fi
 
+# Load phpenv
+if [ -e "$HOME/.phpenv" ]; then
+	export PATH="$HOME/.phpenv/bin:$PATH"
+	eval "$(phpenv init -)"
+fi
+
 # Load direnv
 if type direnv >/dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
