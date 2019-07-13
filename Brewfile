@@ -75,6 +75,7 @@ cask "station"
 cask "townwifi"
 cask "visual-studio-code"
 cask "vlc"
+mas "Bitwarden", id: 1352778147
 mas "Hex Fiend", id: 1342896380
 mas "Keynote", id: 409183694
 mas "Lightshot Screenshot", id: 526298438
