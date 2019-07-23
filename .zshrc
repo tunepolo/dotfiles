@@ -22,6 +22,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 # 補完設定
 zplug "zsh-users/zsh-completions"
 zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug "docker/cli", use:"contrib/completion/zsh/_docker", lazy:true
 
 # CLIツールのインストール・設定
 zplug "paulirish/git-open", as:plugin
