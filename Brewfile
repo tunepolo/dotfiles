@@ -81,6 +81,7 @@ cask "sequel-pro"
 cask "spotify"
 cask "station"
 cask "townwifi"
+cask "trailer"
 cask "visual-studio-code"
 cask "vlc"
 mas "Bitwarden", id: 1352778147
