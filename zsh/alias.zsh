@@ -24,3 +24,9 @@ alias -g L='| less '
 alias -g H='| head '
 alias -g T='| tail '
 alias -g V='| vi '
+
+#====================================================================
+# Specific tool alias
+#====================================================================
+# for ghq
+alias pcd='cd $(ghq list --full-path | fzf)'
