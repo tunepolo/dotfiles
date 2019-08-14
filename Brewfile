@@ -90,6 +90,7 @@ mas "Lightshot Screenshot", id: 526298438
 mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Pasta", id: 1438389787
 mas "Pocket", id: 568494494
 mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
