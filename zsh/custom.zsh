@@ -173,3 +173,6 @@ function do_enter() {
 }
 zle -N do_enter
 bindkey '^m' do_enter
+
+# Go modulesをmodule-aware modeで使用する
+export GO111MODULE=auto
