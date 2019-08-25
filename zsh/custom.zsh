@@ -28,7 +28,7 @@ setopt hist_beep            #
 setopt hist_find_no_dups    #
 setopt hist_ignore_all_dups #
 setopt hist_ignore_dups     #
-setopt hist_ignore_space    #
+setopt hist_ignore_space    # スペース始まりのコマンドは履歴に含めない
 setopt hist_no_store        #
 setopt hist_reduce_blanks   # 余分な空白は詰める
 setopt ignore_eof           #
