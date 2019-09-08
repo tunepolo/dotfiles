@@ -8,10 +8,6 @@ source $ZPLUG_HOME/init.zsh
 # zplugをzplugで管理
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# コマンドプロンプトの設定
-zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-
 # プラグインのインストール・設定
 zplug "chrissicool/zsh-256color"
 zplug "plugins/docker-compose", from:oh-my-zsh, defer:2, if:"(( $+commands[docker-compose] ))"
@@ -60,6 +56,9 @@ if command -v go &>/dev/null; then
 	export GOROOT=/usr/local/opt/go/libexec
 	export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 fi
+
+# Load starship
+eval "$(starship init zsh)"
 
 # Load rbenv
 if [ -e "$HOME/.rbenv" ]; then
