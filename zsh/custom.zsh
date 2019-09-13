@@ -167,10 +167,13 @@ function do_enter() {
     echo -e "\e[0;33m--- git status ---\e[0m"
     git status -sb
     echo
+    echo
   fi
   zle reset-prompt
   return 0
 }
+
+
 zle -N do_enter
 bindkey '^m' do_enter
 
