@@ -21,3 +21,5 @@ do
 done
 
 ./npm_install.sh
+./go_install.sh
+
