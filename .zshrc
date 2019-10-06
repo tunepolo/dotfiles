@@ -16,9 +16,13 @@ zplug "simonwhitaker/gibo", use:'gibo-completion.zsh', as:plugin, if:"(( $+comma
 zplug "zsh-users/zsh-syntax-highlighting"
 
 # 補完設定
-zplug "zsh-users/zsh-completions"
-zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "docker/cli", use:"contrib/completion/zsh/_docker", lazy:true
+zplug "zsh-users/zsh-completions", defer:0, use:contrib/completion/zsh
+zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "lukechilds/zsh-better-npm-completion", defer:3, use:contrib/completion/zsh
+zplug "felixr/docker-zsh-completion", defer:3, use:contrib/completion/zsh
+zplug "zpm-zsh/ssh", defer:3, use:contrib/completion/zsh
 
 # CLIツールのインストール・設定
 zplug "paulirish/git-open", as:plugin
