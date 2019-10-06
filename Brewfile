@@ -5,6 +5,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "ktr0731/evans"
+tap "reviewdog/tap"
 tap "sanemat/font"
 tap "songmu/tap"
 brew "autoconf"
@@ -61,24 +62,23 @@ brew "zsh"
 brew "goodwithtech/dockle/dockle"
 brew "heroku/brew/heroku"
 brew "ktr0731/evans/evans"
+brew "reviewdog/tap/reviewdog"
 brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
 cask "alfred"
 cask "altair-graphql-client"
 cask "appcleaner"
-cask "boostnote"
 cask "cheatsheet"
-cask "dash"
 cask "docker"
 cask "dropbox"
 cask "firefox"
 cask "google-photos-backup-and-sync"
-cask "graphiql"
 cask "imageoptim"
 cask "iterm2"
 cask "jasper"
 cask "kitematic"
-cask "krisp"
+cask "mysqlworkbench"
+cask "notion"
 cask "postman"
 cask "qfinder-pro"
 cask "sequel-pro-nightly"
@@ -90,11 +90,9 @@ mas "Bitwarden", id: 1352778147
 mas "Hex Fiend", id: 1342896380
 mas "Keynote", id: 409183694
 mas "Lightshot Screenshot", id: 526298438
-mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pasta", id: 1438389787
 mas "Pocket", id: 568494494
-mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
-mas "Xcode", id: 497799835
+mas "ToyViewer", id: 414298354
