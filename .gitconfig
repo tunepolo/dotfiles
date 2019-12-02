@@ -80,3 +80,7 @@
 	templatedir = ~/dotfiles/git-templates/secrets
 [ghq]
 	root = ~/Repos
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
