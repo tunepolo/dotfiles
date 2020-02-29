@@ -6,16 +6,18 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "ktr0731/evans"
 tap "kyoh86/tap"
+tap "mono0926/license-plist"
 tap "reviewdog/tap"
 tap "sanemat/font"
 tap "songmu/tap"
 brew "autoconf"
 brew "automake"
-brew "python"
 brew "awscli"
 brew "libpng"
 brew "pcre"
+brew "python"
 brew "cloc"
+brew "cmake"
 brew "composer"
 brew "direnv"
 brew "jpeg"
@@ -64,6 +66,7 @@ brew "goodwithtech/dockle/dockle"
 brew "heroku/brew/heroku"
 brew "ktr0731/evans/evans"
 brew "kyoh86/tap/richgo"
+brew "mono0926/license-plist/license-plist"
 brew "reviewdog/tap/reviewdog"
 brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
@@ -94,15 +97,21 @@ cask "sequel-pro-nightly"
 cask "spotify"
 cask "suspicious-package"
 cask "townwifi"
+cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
 mas "Bitwarden", id: 1352778147
+mas "CommentScreen", id: 1450950860
 mas "Hex Fiend", id: 1342896380
 mas "Keynote", id: 409183694
 mas "Lightshot Screenshot", id: 526298438
+mas "LINE", id: 539883307
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pasta", id: 1438389787
 mas "Pocket", id: 568494494
+mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
 mas "ToyViewer", id: 414298354
+mas "TweetDeck", id: 485812721
+mas "Xcode", id: 497799835
