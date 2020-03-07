@@ -12,3 +12,6 @@ npm install -g npm-check-updates
 # Install git-delete-squashed
 # https://github.com/not-an-aardvark/git-delete-squashed
 npm install -g git-delete-squashed
+
+# mabl-cli
+npm i -g @mablhq/mabl-cli
