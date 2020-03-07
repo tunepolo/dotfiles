@@ -13,6 +13,7 @@
 	quotepath = false
 	preloadindex = true
 	fscache = true
+	hooksPath = githooks
 [push]
 	default = current
 [pull]
