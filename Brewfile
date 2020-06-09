@@ -16,6 +16,7 @@ brew "automake"
 brew "awscli"
 brew "libpng"
 brew "pcre"
+brew "clang-format"
 brew "cloc"
 brew "cmake"
 brew "composer"
@@ -50,6 +51,7 @@ brew "php"
 brew "plantuml"
 brew "pre-commit"
 brew "protobuf"
+brew "protobuf@3.6"
 brew "ruby-build"
 brew "rbenv"
 brew "re2c"
@@ -75,6 +77,8 @@ brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
 cask "altair-graphql-client"
 cask "appcleaner"
+cask "background-music"
+cask "blackhole"
 cask "docker"
 cask "dropbox"
 cask "firefox"
@@ -113,4 +117,5 @@ mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
 mas "ToyViewer", id: 414298354
 mas "TweetDeck", id: 485812721
+mas "Unsplash Wallpapers", id: 1284863847
 mas "Xcode", id: 497799835
