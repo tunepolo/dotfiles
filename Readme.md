@@ -40,6 +40,6 @@ gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに�
 
 ### Visual Studio Codeの設定
 
-Setting Sync拡張で設定を取得する。
+GitHubでログインして同期する。
 
-* [VSCode(Visual Studio Code)の設定を同期させる拡張機能「Setting Sync」が便利 | カレリエ](https://www.karelie.net/vscode-setting-sync/#vscodesetting_sync-7)
+- [Visual Studio Code公式の設定同期を利用する - Qiita](https://qiita.com/Nuits/items/6204a6b0576b7a4e37ea)
