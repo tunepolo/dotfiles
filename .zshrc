@@ -76,6 +76,10 @@ if [ -e "$HOME/.phpenv" ]; then
 	eval "$(phpenv init -)"
 fi
 
+# Load nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # Load direnv
 if type direnv >/dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
