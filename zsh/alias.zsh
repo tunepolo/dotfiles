@@ -1,7 +1,7 @@
 #====================================================================
 # Setting Alias
 #====================================================================
-alias ls='ls -aF'
+alias ls='lsd -aF'
 alias ll='ls -l'
 alias la='ls -a'
 alias grep='grep --color=always'
@@ -31,5 +31,5 @@ alias -g V='| vi '
 # for ghq
 alias pcd='cd $(ghq list --full-path | fzf)'
 
-# for righgo
+# for richgo
 alias go=richgo
