@@ -20,7 +20,7 @@ for file in "${DOT_FILES[@]}"; do
 done
 
 # nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm install node
 
 ./npm_install.sh
