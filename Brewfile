@@ -1,5 +1,5 @@
+tap "bufbuild/buf"
 tap "github/gh"
-tap "goodwithtech/dockle"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -19,6 +19,7 @@ tap "songmu/tap"
 tap "zkokaja/brewlet"
 brew "autoconf"
 brew "automake"
+brew "python@3.9"
 brew "awscli"
 brew "bat"
 brew "libpng"
@@ -39,6 +40,8 @@ brew "git-secrets"
 brew "gnu-sed"
 brew "go"
 brew "golangci-lint"
+brew "jasper", link: false
+brew "netpbm"
 brew "graphviz"
 brew "gron"
 brew "grpcurl"
@@ -79,7 +82,7 @@ brew "topgrade"
 brew "vim"
 brew "zplug"
 brew "zsh"
-brew "goodwithtech/dockle/dockle"
+brew "bufbuild/buf/buf"
 brew "heroku/brew/heroku"
 brew "itchyny/tap/mmv"
 brew "ktr0731/evans/evans"
@@ -105,8 +108,6 @@ cask "iterm2"
 cask "jasper"
 cask "karabiner-elements"
 cask "monitorcontrol"
-cask "notion"
-cask "qfinder-pro"
 cask "qlimagesize"
 cask "qlmarkdown"
 cask "qlvideo"
@@ -115,8 +116,8 @@ cask "quicklookase"
 cask "sequel-pro-nightly"
 cask "session-manager-plugin"
 cask "spotify"
-cask "suspicious-package"
 cask "townwifi"
+cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
 mas "Bitwarden", id: 1352778147
@@ -126,6 +127,8 @@ mas "Hex Fiend", id: 1342896380
 mas "Keynote", id: 409183694
 mas "Lightshot Screenshot", id: 526298438
 mas "LINE", id: 539883307
+mas "MeetingBar", id: 1532419400
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Pasta", id: 1438389787
@@ -136,4 +139,3 @@ mas "The Unarchiver", id: 425424353
 mas "ToyViewer", id: 414298354
 mas "TweetDeck", id: 485812721
 mas "Unsplash Wallpapers", id: 1284863847
-mas "Xcode", id: 497799835
