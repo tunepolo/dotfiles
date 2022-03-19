@@ -3,7 +3,6 @@
 # Create symbolic link
 DOT_FILES=(
     .gemrc
-    .gitconfig
     .inputrc
     .irbrc
     .minttyrc
@@ -18,6 +17,11 @@ DOT_FILES=(
 for file in "${DOT_FILES[@]}"; do
     ln -fs "$HOME"/dotfiles/"$file" "$HOME"/"$file"
 done
+
+# Git
+mkdir -p "$HOME"/.config/git
+ln -fs "$HOME"/dotfiles/git/config "$HOME"/.config/git/config
+ln -fs "$HOME"/dotfiles/git/ignore "$HOME"/.config/git/ignore
 
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
