@@ -89,8 +89,6 @@ brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
 cask "altair-graphql-client"
 cask "appcleaner"
-cask "background-music"
-cask "brewlet"
 cask "calibre"
 cask "docker"
 cask "dropbox"
@@ -110,7 +108,6 @@ cask "session-manager-plugin"
 cask "spotify"
 cask "townwifi"
 cask "visual-studio-code"
-cask "vlc"
 mas "Bitwarden", id: 1352778147
 mas "HEIC Converter", id: 1294126402
 mas "Hex Fiend", id: 1342896380
