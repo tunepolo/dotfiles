@@ -27,3 +27,5 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # 設定変更したアプリを再起動する
 killall "Finder" &> /dev/null
 
+# Dockを自動的に隠す
+defaults write com.apple.dock autohide -bool true
