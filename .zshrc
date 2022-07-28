@@ -2,7 +2,7 @@ autoload -U promptinit
 promptinit
 
 # zplugの初期設定
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 # zplugをzplugで管理
