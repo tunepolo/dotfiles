@@ -89,6 +89,7 @@ brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
 cask "altair-graphql-client"
 cask "appcleaner"
+cask "authy"
 cask "calibre"
 cask "docker"
 cask "dropbox"
