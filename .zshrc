@@ -57,8 +57,7 @@ esac
 if command -v go &>/dev/null; then
 	[ -d "$HOME/.go" ] || mkdir "$HOME/.go"
 	export GOPATH="$HOME/.go"
-	export GOROOT=/usr/local/opt/go/libexec
-	export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+	export PATH="$PATH:$GOPATH/bin"
 fi
 
 # Load starship
