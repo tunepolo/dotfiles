@@ -31,5 +31,3 @@ alias -g V='| vi '
 # for ghq
 alias pcd='cd $(ghq list --full-path | fzf)'
 
-# for richgo
-alias go=richgo
