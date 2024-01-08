@@ -10,7 +10,6 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # プラグインのインストール・設定
 zplug "chrissicool/zsh-256color"
-zplug "plugins/docker-compose", from:oh-my-zsh, defer:2, if:"(( $+commands[docker-compose] ))"
 zplug "rupa/z", use:"*.sh"
 zplug "simonwhitaker/gibo", use:'gibo-completion.zsh', as:plugin, if:"(( $+commands[gibo] ))", defer:2
 zplug "zsh-users/zsh-syntax-highlighting"
@@ -21,7 +20,6 @@ zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "lukechilds/zsh-better-npm-completion", defer:3, use:contrib/completion/zsh
-zplug "felixr/docker-zsh-completion", defer:3, use:contrib/completion/zsh
 zplug "zpm-zsh/ssh", defer:3, use:contrib/completion/zsh
 
 # CLIツールのインストール・設定
