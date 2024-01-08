@@ -1,0 +1,32 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+scan_timeout = 10
+
+[character]
+error_symbol = "[❯](bold red)"
+format = "[\\$](green bold) "
+success_symbol = "[❯](bold green)"
+
+[directory]
+truncate_to_repo = false
+truncation_length = 100
+truncation_symbol = "…/"
+
+[docker_context]
+format = "via [🐋 $context](blue bold)"
+
+[git_branch]
+symbol = " "
+
+[username]
+disabled = false
+format = "[$user🌱]($style) "
+show_always = true
+style_root = "black bold"
+style_user = "white bold"
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
