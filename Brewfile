@@ -117,7 +117,6 @@ brew "itchyny/tap/mmv"
 brew "ktr0731/evans/evans"
 brew "muesli/tap/duf"
 brew "reviewdog/tap/reviewdog"
-brew "sanemat/font/ricty", args: ["with-powerline"]
 brew "songmu/tap/blogsync"
 brew "youyo/tap/awssh"
 cask "adobe-acrobat-reader"
