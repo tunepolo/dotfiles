@@ -86,9 +86,6 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-" フォント
-set gfn=Ricty:h18
-
 " 行末の空白をハイライトする
 " http://d.hatena.ne.jp/kasahi/20070902/1188744907
 highlight WhitespaceEOL ctermbg=red guibg=red
