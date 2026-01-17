@@ -1,0 +1,4 @@
+.envrc
+.nvmrc
+.vscode/*
+.DS_Store

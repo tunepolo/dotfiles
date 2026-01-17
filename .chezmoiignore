@@ -14,3 +14,18 @@ npm_install.sh
 go_install.sh
 bin/
 git-templates/
+
+# 元のファイル（chezmoi形式に移行済み）
+.gemrc
+.inputrc
+.irbrc
+.pryrc
+.tigrc
+.vimrc
+.zshenv
+.zshrc
+starship.toml
+ghostty_config
+git/
+vim/
+zsh/
