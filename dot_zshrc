@@ -37,10 +37,6 @@ zplug load
 
 # OS毎の設定
 case "${OSTYPE}" in
-cygwin*)
-	# Cygwin(Windows)
-	[ -f ~/dotfiles/zsh/cygwin.zsh ] && source ~/dotfiles/zsh/cygwin.zsh
-	;;
 darwin*)
 	# Mac(Unix)
 	[ -f ~/dotfiles/zsh/osx.zsh ] && source ~/dotfiles/zsh/osx.zsh
