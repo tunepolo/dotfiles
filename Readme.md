@@ -7,17 +7,21 @@
 ### 初回セットアップ
 
 ```bash
+# Homebrewのインストール（未インストールの場合）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # chezmoiのインストール
 brew install chezmoi
 
-# dotfilesリポジトリをcloneして初期化
-chezmoi init https://github.com/tunepolo/dotfiles.git
+# dotfilesリポジトリをcloneして設定ファイルを適用
+chezmoi init --apply https://github.com/tunepolo/dotfiles.git
 
-# 設定ファイルの差分確認
-chezmoi diff
+# ツール・アプリケーションのインストール
+cd ~/.local/share/chezmoi
+brew bundle
 
-# 設定ファイルを適用
-chezmoi apply -v
+# 追加のセットアップスクリプト実行（nvm、npm、Go、macOS設定等）
+./setup.sh
 ```
 
 ### 設定の更新
@@ -33,35 +37,16 @@ chezmoi edit ~/.zshrc
 chezmoi apply -v
 ```
 
-## 従来の方法（setup.sh）
-
-**注意**: setup.shは将来的に非推奨となる予定です。新規環境ではchezmoiの使用を推奨します。
-
-## 設定ファイルの配置
-
-```bash
-$ git clone https://github.com/tunepolo/dotfiles.git
-$ cd dotfiles
-$ ./setup.sh
-```
-
-## Homebrewを使ったツール・アプリケーションのインストール
-
-```bash
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-$ cd dotfiles
-$ brew bundle
-```
-
 ## 詳細設定
 
 ### PC固有設定
 
-下記の名称のローカルファイルを作ってそこに書くこと。
+chezmoi initの際に、ユーザー名とメールアドレスが対話的に設定されます。
+また、下記の名称のローカルファイルを作成することで、PC固有設定を追加できます。
 
-* .gitconfig.local
-* .vimrc.local
-* .zshrc.local
+* ~/.gitconfig.local
+* ~/.vimrc.local
+* ~/.zshrc.local
 
 gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに記述する。
 

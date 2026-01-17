@@ -1,32 +1,6 @@
 #!/bin/bash
 
-# Create symbolic link
-DOT_FILES=(
-    .gemrc
-    .inputrc
-    .irbrc
-    .minttyrc
-    .pryrc
-    .ptconfig.toml
-    .tigrc
-    .vimrc
-    .zshenv
-    .zshrc
-)
-
-for file in "${DOT_FILES[@]}"; do
-    ln -fs "$HOME"/dotfiles/"$file" "$HOME"/"$file"
-done
-
-# git
-mkdir -p "$HOME"/.config/git
-ln -fs "$HOME"/dotfiles/git/config "$HOME"/.config/git/config
-ln -fs "$HOME"/dotfiles/git/ignore "$HOME"/.config/git/ignore
-
-# starship
-ln -fs "$HOME"/dotfiles/starship.toml "$HOME"/.config/starship.toml
-
-# nvm
+# nvmのインストール
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm install node
 
