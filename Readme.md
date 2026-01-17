@@ -2,6 +2,41 @@
 
 # 使い方
 
+## chezmoiを使った設定管理（推奨）
+
+### 初回セットアップ
+
+```bash
+# chezmoiのインストール
+brew install chezmoi
+
+# dotfilesリポジトリをcloneして初期化
+chezmoi init https://github.com/tunepolo/dotfiles.git
+
+# 設定ファイルの差分確認
+chezmoi diff
+
+# 設定ファイルを適用
+chezmoi apply -v
+```
+
+### 設定の更新
+
+```bash
+# 最新の設定を取得して適用
+chezmoi update -v
+
+# 設定ファイルを編集
+chezmoi edit ~/.zshrc
+
+# 設定を再適用
+chezmoi apply -v
+```
+
+## 従来の方法（setup.sh）
+
+**注意**: setup.shは将来的に非推奨となる予定です。新規環境ではchezmoiの使用を推奨します。
+
 ## 設定ファイルの配置
 
 ```bash
