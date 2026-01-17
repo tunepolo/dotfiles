@@ -17,10 +17,10 @@ brew install chezmoi
 chezmoi init --apply https://github.com/tunepolo/dotfiles.git
 
 # ツール・アプリケーションのインストール
-cd ~/.local/share/chezmoi
-brew bundle
+brew bundle --global
 
-# 追加のセットアップスクリプト実行（nvm、npm、Go、macOS設定等）
+# 追加のセットアップスクリプト実行（nvm、npm、macOS設定等）
+cd ~/.local/share/chezmoi
 ./setup.sh
 ```
 
