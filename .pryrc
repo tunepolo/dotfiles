@@ -1,3 +1,0 @@
-Pry.config.color = true
-Pry.config.editor = 'vim'
-
