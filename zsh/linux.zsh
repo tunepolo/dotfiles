@@ -1,3 +1,5 @@
+#!/bin/zsh
+# shellcheck shell=bash
 # setting for linux
 
 alias ls="ls -AF --color"

@@ -1,3 +1,5 @@
+#!/bin/zsh
+# shellcheck shell=bash
 #====================================================================
 # Setting Options
 #====================================================================
@@ -63,6 +65,7 @@ zstyle ':completion:*:default' menu select=1
 # npm completion
 
 ###-begin-npm-completion-###
+# shellcheck disable=SC2207,SC2046,SC2034,SC2162,SC2219
 #
 # npm command completion script
 #
@@ -124,6 +127,7 @@ fi
 ###-end-npm-completion-###
 
 # AWS CLI
+# shellcheck disable=SC1091
 [ -f /usr/local/share/zsh/site-functions/aws_zsh_completer.sh ] && source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 
 #====================================================================

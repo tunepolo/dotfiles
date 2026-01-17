@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $(uname) != "Darwin" ] ; then
+if [ "$(uname)" != "Darwin" ] ; then
 	echo "Not mac, skip setting"
 	exit 1
 fi

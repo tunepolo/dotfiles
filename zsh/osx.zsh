@@ -1,3 +1,5 @@
+#!/bin/zsh
+# shellcheck shell=bash
 # setting for OS X
 
 alias ls="ls -AF -G"
