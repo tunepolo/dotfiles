@@ -5,7 +5,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 nvm install node
 
 ./npm_install.sh
-./go_install.sh
 ./mac_install.sh
 
 # HomebrewでinstallしたGitのdiff-highlightを有効にする

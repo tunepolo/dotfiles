@@ -11,7 +11,6 @@ setup.sh
 shellcheck.sh
 mac_install.sh
 npm_install.sh
-go_install.sh
 bin/
 git-templates/
 git/
