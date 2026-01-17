@@ -13,6 +13,5 @@ mac_install.sh
 npm_install.sh
 bin/
 git-templates/
-git/
 vim/
 zsh/
