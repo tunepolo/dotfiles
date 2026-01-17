@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/tunepolo/dotfiles.svg?style=svg)](https://circleci.com/gh/tunepolo/dotfiles)
+[![ShellCheck](https://github.com/tunepolo/dotfiles/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/tunepolo/dotfiles/actions/workflows/shellcheck.yml)
 
 # 使い方
 
