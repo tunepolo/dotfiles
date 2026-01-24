@@ -80,3 +80,7 @@ repo = 'airblade/vim-gitgutter'
 # カラースキーマ
 [[plugins]]
 repo = 'tomasr/molokai'
+
+# GitHub Copilot
+[[plugins]]
+repo = 'github/copilot.vim'

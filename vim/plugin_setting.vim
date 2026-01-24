@@ -143,3 +143,7 @@ endfunction
 " syntastic
 let g:syntastic_ruby_checkers = ['rubocop']
 
+" GitHub Copilot
+" gitcommitファイルタイプでCopilotを有効化（コミットメッセージの自動生成）
+let g:copilot_filetypes = { 'gitcommit': v:true }
+
