@@ -16,6 +16,12 @@ alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
 alias vi=vim
 
+# sudo時にsudo_pathをPATHに加える（.zshenvではなくここで定義することで
+# cmuxなど一部の環境でghostty-integrationのsudo()関数定義と衝突するのを避ける）
+if [ $(id -u) -ne 0 ]; then
+	alias sudo="sudo env PATH=\"$SUDO_PATH:$PATH\""
+fi
+
 #====================================================================
 # Setting Extension Alias
 # Usage:
