@@ -1,0 +1,37 @@
+shell = "zsh"
+
+[plugins]
+
+[plugins.zsh-256color]
+github = "chrissicool/zsh-256color"
+
+[plugins.z]
+github = "rupa/z"
+use = ["z.sh"]
+
+[plugins.gibo-completion]
+github = "simonwhitaker/gibo"
+use = ["gibo-completion.zsh"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-history-substring-search]
+github = "zsh-users/zsh-history-substring-search"
+
+[plugins.zsh-better-npm-completion]
+github = "lukechilds/zsh-better-npm-completion"
+
+[plugins.zsh-ssh]
+github = "zpm-zsh/ssh"
+
+[plugins.git-open]
+github = "paulirish/git-open"
+
+# zsh-syntax-highlighting は最後に読み込む
+# （他プラグインで定義された関数・コマンドもハイライト対象にするため）
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
