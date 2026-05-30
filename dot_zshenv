@@ -63,5 +63,13 @@ export LESS="-R"
 # エディタの設定
 export EDITOR=nvim
 
+# Bitwarden SSH Agent（Bitwarden Desktop > Settings > SSH agent を有効にすると
+# このソケットが作成され、ssh / git push / 署名が Vault の秘密鍵を使うようになる。
+# Bitwarden が未起動 / 未有効ならソケットは存在せず、システム標準の agent に
+# フォールバックする。）
+if [ -S "$HOME/.bitwarden-ssh-agent.sock" ]; then
+	export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+fi
+
 # rustup
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

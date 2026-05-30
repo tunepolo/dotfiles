@@ -95,6 +95,36 @@ chezmoi data を編集し、`chezmoi apply` を再実行する。
 登録する必要がある（GitHub 上で Verified バッジを付けるため）：
 [Telling Git about your signing key – GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key#telling-git-about-your-ssh-key)
 
+### SSH 鍵を Bitwarden SSH Agent で管理する
+
+秘密鍵をディスクに置かず、Bitwarden Desktop の SSH Agent から提供する構成。
+新PCへの移行時は Bitwarden にログインするだけで鍵が即使えるようになる。
+
+`dot_zshenv` で `SSH_AUTH_SOCK` を Bitwarden のソケットに向けてあるので、
+Bitwarden Desktop で agent を有効にしている間は ssh / git が自動で
+Vault の鍵を使う（未起動ならシステム標準の agent にフォールバック）。
+
+#### 既存鍵を Bitwarden に取り込む手順
+
+1. Bitwarden Desktop を起動・ログイン
+2. **+ Add item → SSH Key** で新規アイテムを作成し、`~/.ssh/id_rsa`（秘密鍵）と
+   `~/.ssh/id_rsa.pub`（公開鍵）の中身を貼り付けて保存
+3. **Settings → SSH agent → Enable SSH agent** を ON
+4. シェルを開き直し、 `ssh-add -L` で公開鍵が表示されることを確認
+5. テスト: `ssh -T git@github.com`、`git commit --allow-empty -m 'signing test'`
+   で動作確認（コミット時に Bitwarden が承認ダイアログを出す）
+
+#### 新PCセットアップ時の鍵復元
+
+1. Bitwarden Desktop を入れてログイン → Settings → SSH agent を有効化
+2. `chezmoi init --apply` で dotfiles を反映（`SSH_AUTH_SOCK` が自動設定される）
+3. git 署名用に公開鍵をディスクに書き出し：
+   ```bash
+   mkdir -p ~/.ssh && chmod 700 ~/.ssh
+   ssh-add -L > ~/.ssh/id_rsa.pub
+   ```
+4. 動作確認: `ssh -T git@github.com`
+
 ### Visual Studio Codeの設定
 
 VSCode 組み込みの Settings Sync（GitHubアカウント連携）で同期する。
