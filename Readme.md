@@ -14,15 +14,21 @@
 brew install chezmoi
 
 # dotfilesリポジトリをcloneして設定ファイルを適用
+# 実行中に `email` と `name` を対話的に入力する（git config の [user] に反映される）
 chezmoi init --apply https://github.com/tunepolo/dotfiles.git
 
 # ツール・アプリケーションのインストール
+# Mac App Store アプリ（Bitwarden, iMovie 等）が含まれるため、
+# 事前に App Store にサインインしておく
 brew bundle --global
 
 # 追加のセットアップスクリプト実行（nvm、npm、macOS設定等）
+# diff-highlight の symlink 作成で sudo パスワードが必要
 cd ~/.local/share/chezmoi
 ./setup.sh
 ```
+
+zsh プラグインは [sheldon](https://github.com/rossmacarthur/sheldon) で管理しており、設定は `~/.config/sheldon/plugins.toml`。初回シェル起動時にプラグインが自動的にcloneされる。
 
 ### 設定の更新
 
@@ -62,6 +68,6 @@ chezmoi data を編集し、`chezmoi apply` を再実行する。
 
 ### Visual Studio Codeの設定
 
-GitHubでログインして同期する。
+VSCode 組み込みの Settings Sync（GitHubアカウント連携）で同期する。
 
-- [Visual Studio Code公式の設定同期を利用する - Qiita](https://qiita.com/Nuits/items/6204a6b0576b7a4e37ea)
+- [Settings Sync in Visual Studio Code（公式ドキュメント）](https://code.visualstudio.com/docs/configure/settings-sync)
