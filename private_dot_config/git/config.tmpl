@@ -15,6 +15,8 @@
 	preloadindex = true
 	fscache = true
 	hooksPath = githooks
+[init]
+	defaultBranch = main
 [push]
 	default = current
 [pull]
@@ -32,9 +34,9 @@
 	d = diff
 	dc = diff --cached
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-	del-squashed-branch = "!f(){ base_branch=${1:-master} && echo ${base_branch} && git checkout -q ${base_branch} && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base origin/${base_branch} $branch) && [[ $(git cherry origin/${base_branch} $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done; git checkout -q -;};f"
+	del-squashed-branch = "!f(){ base_branch=${1:-main} && echo ${base_branch} && git checkout -q ${base_branch} && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base origin/${base_branch} $branch) && [[ $(git cherry origin/${base_branch} $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done; git checkout -q -;};f"
 	del-sq = !git del-squashed-branch `git def-branch`
-	def-branch = !git ls-remote --symref origin HEAD | head -n 1 | cut -f 1 | cut -d "/" -f 3-
+	def-branch = !git symbolic-ref refs/remotes/origin/HEAD --short 2>/dev/null | sed 's@^origin/@@'
 	df = diff
 	diffr = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	dn = diff --name-only
@@ -57,8 +59,8 @@
 	s = status --short --branch
 	st = status
 	su = submodule update
-	sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
-	openpr = "!f() { pr_number=$(git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's/#//'); gh pr view $pr_number --web; }; f"
+	sync = !git checkout main && git pull origin main && git fetch -p origin && git branch -d $(git branch --merged | grep -v main | grep -v '*')
+	openpr = "!f() { pr_number=$(git log --merges --oneline --reverse --ancestry-path $1...main | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's/#//'); gh pr view $pr_number --web; }; f"
 [merge]
 	tool = vimdiff
 	ff = false
