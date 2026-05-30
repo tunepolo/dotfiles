@@ -36,6 +36,13 @@ Ruby / Python / Node 等のバージョン管理は [mise](https://mise.jdx.dev/
 mise use --global node@lts ruby@latest python@latest
 ```
 
+エディタは Neovim を使用。設定は `~/.config/nvim/` 配下に集約：
+
+- `init.lua` — 全般オプション・キーマップ・autocmd
+- `lua/plugins.lua` — [lazy.nvim](https://github.com/folke/lazy.nvim) のプラグイン宣言
+
+初回 `nvim` 起動時に lazy.nvim が自動でブートストラップされ、続けてプラグインがインストールされる。
+
 ### 設定の更新
 
 ```bash
