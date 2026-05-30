@@ -58,8 +58,7 @@ setopt transient_rprompt    #
 # 補完
 #====================================================================
 
-autoload -U compinit
-compinit
+# compinit は dot_zshrc で sheldon 読み込み前に実行済み
 zstyle ':completion:*:default' menu select=1
 
 # npm completion

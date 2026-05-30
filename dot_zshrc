@@ -1,6 +1,11 @@
 autoload -U promptinit
 promptinit
 
+# compinit を sheldon 読み込み前に走らせる
+# （zsh-better-npm-completion 等が source 中に compdef を呼ぶため）
+autoload -Uz compinit
+compinit
+
 # sheldon でプラグインを読み込み（設定は ~/.config/sheldon/plugins.toml）
 if command -v sheldon &>/dev/null; then
 	eval "$(sheldon source)"
