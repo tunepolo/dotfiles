@@ -41,22 +41,24 @@ chezmoi apply -v
 
 ### PC固有設定
 
-chezmoi initの際に、ユーザー名とメールアドレスが対話的に設定されます。
-また、下記の名称のローカルファイルを作成することで、PC固有設定を追加できます。
+`chezmoi init` の際に対話的に入力するユーザー名・メールアドレスは
+chezmoi data に保存され、`~/.config/git/config` の `[user]` セクションに
+テンプレート展開で反映される。
 
-* ~/.gitconfig.local
-* ~/.vimrc.local
-* ~/.zshrc.local
+さらにPC固有の設定を追加したい場合、下記のローカルファイルを作成できる：
 
-gitのユーザ名、認証設定、プロキシ設定は~/.gitconfig.localに記述する。
+* `~/.gitconfig.local` — 認証情報・プロキシ等。git config の末尾で
+  `[include]` されるため、テンプレート側の設定も上書きできる
+* `~/.vimrc.local`
+* `~/.zshrc.local`
 
 ```.gitconfig.local
-[user]
-  name = Yuichi TSUNEMATSU
-  email = tunepolo@gmail.com
 [credential]
   helper = osxkeychain
 ```
+
+ユーザー名・メールアドレスを変更したい場合は `chezmoi edit-config` で
+chezmoi data を編集し、`chezmoi apply` を再実行する。
 
 ### Visual Studio Codeの設定
 

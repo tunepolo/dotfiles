@@ -1,5 +1,6 @@
-[include]
-	path = ~/.gitconfig.local
+[user]
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
 [color]
 	diff = auto
 	status = auto
@@ -90,3 +91,5 @@
 	insteadOf = https://github.com/
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
+[include]
+	path = ~/.gitconfig.local
