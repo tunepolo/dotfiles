@@ -30,6 +30,12 @@ cd ~/.local/share/chezmoi
 
 zsh プラグインは [sheldon](https://github.com/rossmacarthur/sheldon) で管理しており、設定は `~/.config/sheldon/plugins.toml`。初回シェル起動時にプラグインが自動的にcloneされる。
 
+Ruby / Python / Node 等のバージョン管理は [mise](https://mise.jdx.dev/) で統合している。リポジトリごとに `.tool-versions` / `.node-version` 等を置けば `cd` した瞬間に自動で切り替わる。グローバル版を入れたい場合：
+
+```bash
+mise use --global node@lts ruby@latest python@latest
+```
+
 ### 設定の更新
 
 ```bash

@@ -2,13 +2,10 @@
 
 set -euo pipefail
 
-# nvmのインストール（インストール済みならスキップ）
-if [ ! -d "${NVM_DIR:-$HOME/.nvm}" ]; then
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-	# shellcheck disable=SC1091
-	. "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-	nvm install node
-fi
+# Ruby / Python / Node のバージョンは mise で管理する。
+# 必要なバージョンは各リポジトリの .tool-versions / .node-version 等に記述すれば
+# cd 時に自動で読み込まれる。グローバル版を入れたい場合は以下を実行：
+#   mise use --global node@lts ruby@latest python@latest
 
 ./npm_install.sh
 ./mac_install.sh
