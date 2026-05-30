@@ -31,7 +31,7 @@ killall "Finder" &> /dev/null
 defaults write com.apple.inputmethod.Kotoeri LiveConversionEnabled -bool false
 
 # 反映のため日本語IMを再起動
-killall -u $USER JapaneseIM
+killall -u "$USER" JapaneseIM
 
 # Dockを自動的に隠す
 defaults write com.apple.dock autohide -bool true
