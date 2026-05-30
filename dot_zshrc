@@ -29,11 +29,10 @@ linux*)
 	;;
 esac
 
-# Set GOPATH for Go
+# Go の GOPATH は明示しなくても Go 1.11+ で $HOME/go がデフォルト。
+# bin だけ PATH に通す。
 if command -v go &>/dev/null; then
-	[ -d "$HOME/.go" ] || mkdir "$HOME/.go"
-	export GOPATH="$HOME/.go"
-	export PATH="$PATH:$GOPATH/bin"
+	export PATH="$PATH:$HOME/go/bin"
 fi
 
 # Load starship

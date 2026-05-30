@@ -6,7 +6,7 @@
 alias ls='lsd -aF'
 alias ll='ls -l'
 alias la='ls -a'
-alias grep='grep --color=always'
+alias grep='grep --color=auto'
 alias j=jobs
 alias so="source ~/.zshrc"
 alias ...='cd ../..'
