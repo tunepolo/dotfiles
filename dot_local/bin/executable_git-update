@@ -4,15 +4,15 @@
 # https://sue445.hatenablog.com/entry/2019/03/02/220617
 
 if [ -n "$1" ]; then
-  master=$1
+  default_branch=$1
 else
-  master=`git remote show origin | grep 'HEAD branch:' | cut -d : -f 2 | tr -d '[[:space:]]'`
+  default_branch=`git symbolic-ref refs/remotes/origin/HEAD --short 2>/dev/null | sed 's@^origin/@@'`
 fi
 
 current=`git branch --show-current`
 
-git checkout $master
-git pull origin $master --ff-only
+git checkout "$default_branch"
+git pull origin "$default_branch" --ff-only
 
-git checkout $current
-git rebase $master
+git checkout "$current"
+git rebase "$default_branch"
