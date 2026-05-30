@@ -14,7 +14,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 
 # sudo時にsudo_pathをPATHに加える（.zshenvではなくここで定義することで
 # cmuxなど一部の環境でghostty-integrationのsudo()関数定義と衝突するのを避ける）

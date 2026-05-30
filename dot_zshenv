@@ -61,7 +61,7 @@ fi
 export LESS="-R"
 
 # エディタの設定
-export EDITOR=vim
+export EDITOR=nvim
 
 # rustup
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
