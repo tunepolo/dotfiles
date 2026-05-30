@@ -1,6 +1,7 @@
 [user]
 	name = {{ .name | quote }}
 	email = {{ .email | quote }}
+	signingkey = ~/.ssh/id_rsa.pub
 [color]
 	diff = auto
 	status = auto
@@ -91,5 +92,11 @@
 	insteadOf = https://github.com/
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
 [include]
 	path = ~/.gitconfig.local
