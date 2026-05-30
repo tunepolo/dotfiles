@@ -9,9 +9,9 @@ github = "chrissicool/zsh-256color"
 github = "rupa/z"
 use = ["z.sh"]
 
+# gibo は近年 Go 製にリライトされ、補完は `gibo completion zsh` で生成する形式に変更された
 [plugins.gibo-completion]
-github = "simonwhitaker/gibo"
-use = ["gibo-completion.zsh"]
+inline = 'if command -v gibo &>/dev/null; then eval "$(gibo completion zsh)"; fi'
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
