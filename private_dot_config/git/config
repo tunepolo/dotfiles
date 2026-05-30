@@ -77,7 +77,7 @@
 	patterns = private_key
 	patterns = private_key_id
 [init]
-	templatedir = ~/dotfiles/git-templates/secrets
+	templatedir = ~/.git-templates/secrets
 [ghq]
 	root = ~/Repos
 [pager]

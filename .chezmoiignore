@@ -10,4 +10,3 @@ setup.sh
 shellcheck.sh
 mac_install.sh
 npm_install.sh
-git-templates/
