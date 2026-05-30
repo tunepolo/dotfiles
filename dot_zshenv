@@ -17,6 +17,8 @@ typeset -U path
 #            -: シンボリックリンク先のパスを評価。
 #            /: ディレクトリのみ残す。
 path=(
+/opt/homebrew/bin(N-/)
+/opt/homebrew/sbin(N-/)
 /usr/local/bin(N-/)
 /opt/local/bin(N-/)
 /usr/bin(N-/)

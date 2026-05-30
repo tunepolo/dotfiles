@@ -1,5 +1,5 @@
 {
-  extends: ["config:base"],
+  extends: ["config:recommended"],
   timezone: "Asia/Tokyo",
   labels: ["dependencies"],
   separateMinorPatch: true,
