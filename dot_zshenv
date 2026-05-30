@@ -22,7 +22,7 @@ path=(
 /usr/bin(N-/)
 /bin(N-/)
 /usr/X11R6/bin(N-/)
-$HOME/dotfiles/bin/*(N-/)
+$HOME/.local/bin(N-/)
 $HOME/bin(N-/)
 )
 
