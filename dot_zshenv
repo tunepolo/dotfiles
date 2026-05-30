@@ -46,12 +46,12 @@ sudo_path=(
 /opt/local/sbin(N-/)
 )
 
+# rootの場合はsudo用のパスもPATHに加える。
+# 一般ユーザー向けのsudoエイリアスはzsh/alias.zsh側で定義する
+# （.zshenvに置くとcmuxなど一部の環境でghostty-integrationの
+# sudo()関数定義とエイリアスが衝突しparse errorになるため）。
 if [ $(id -u) -eq 0 ]; then
-	# rootの場合はsudo用のパスもPATHに加える。
 	path=($sudo_path $path)
-else
-	# 一般ユーザーの場合はsudo時にsudo用のパスをPATHに加える。
-	alias sudo="sudo env PATH=\"$SUDO_PATH:$PATH\""
 fi
 
 # lessの設定
@@ -60,3 +60,6 @@ export LESS="-R"
 
 # エディタの設定
 export EDITOR=vim
+
+# rustup
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
