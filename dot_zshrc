@@ -30,20 +30,20 @@ zplug check --verbose || zplug install
 zplug load
 
 # alias設定
-[ -f ~/dotfiles/zsh/alias.zsh ] && source ~/dotfiles/zsh/alias.zsh
+[ -f ~/.zsh/alias.zsh ] && source ~/.zsh/alias.zsh
 
 # オプション・カスタマイズ設定
-[ -f ~/dotfiles/zsh/custom.zsh ] && source ~/dotfiles/zsh/custom.zsh
+[ -f ~/.zsh/custom.zsh ] && source ~/.zsh/custom.zsh
 
 # OS毎の設定
 case "${OSTYPE}" in
 darwin*)
 	# Mac(Unix)
-	[ -f ~/dotfiles/zsh/osx.zsh ] && source ~/dotfiles/zsh/osx.zsh
+	[ -f ~/.zsh/osx.zsh ] && source ~/.zsh/osx.zsh
 	;;
 linux*)
 	# Linux
-	[ -f ~/dotfiles/zsh/linux.zsh ] && source ~/dotfiles/zsh/linux.zsh
+	[ -f ~/.zsh/linux.zsh ] && source ~/.zsh/linux.zsh
 	;;
 esac
 

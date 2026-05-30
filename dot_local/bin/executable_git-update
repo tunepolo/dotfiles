@@ -9,7 +9,7 @@ else
   master=`git remote show origin | grep 'HEAD branch:' | cut -d : -f 2 | tr -d '[[:space:]]'`
 fi
 
-current=`git branch | grep '*' | cut -f 2 -d ' '`
+current=`git branch --show-current`
 
 git checkout $master
 git pull origin $master --ff-only
