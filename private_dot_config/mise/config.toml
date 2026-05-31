@@ -2,3 +2,5 @@
 node = "lts"
 python = "latest"
 ruby = "latest"
+go = "latest"
+java = "temurin-21"
