@@ -10,11 +10,17 @@
 	grep = auto
 [core]
 	editor = nvim
-	pager = "less -R"
+	pager = delta
 	quotepath = false
 	preloadindex = true
 	fscache = true
 	hooksPath = githooks
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
 [init]
 	defaultBranch = main
 [push]
@@ -65,6 +71,7 @@
 	tool = vimdiff
 	ff = false
 	log = true
+	conflictstyle = zdiff3
 [branch]
 	autosetuprebase = always
 [rebase]
@@ -84,10 +91,6 @@
 	templatedir = ~/.git-templates/secrets
 [ghq]
 	root = ~/Repos
-[pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
 [fetch]
 	prune = true
 [url "git@github.com:"]
