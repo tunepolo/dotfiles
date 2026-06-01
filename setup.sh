@@ -8,6 +8,7 @@ set -euo pipefail
 #   mise use --global node@lts ruby@latest python@latest
 
 ./npm_install.sh
+./apm_install.sh
 ./mac_install.sh
 
 # HomebrewでinstallしたGitのdiff-highlightを有効にする
