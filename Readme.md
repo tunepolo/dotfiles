@@ -15,17 +15,15 @@ brew install chezmoi
 
 # dotfilesリポジトリをcloneして設定ファイルを適用
 # 実行中に `email` と `name` を対話的に入力する（git config の [user] に反映される）
+# 適用直後に .chezmoiscripts/ 配下のセットアップスクリプト（macOS defaults、
+# diff-highlight symlink、npm グローバルパッケージ）が自動実行される。
+# diff-highlight の symlink 作成で sudo パスワードを求められる場合がある。
 chezmoi init --apply https://github.com/tunepolo/dotfiles.git
 
 # ツール・アプリケーションのインストール
 # Mac App Store アプリ（Bitwarden, iMovie 等）が含まれるため、
 # 事前に App Store にサインインしておく
 brew bundle --global
-
-# 追加のセットアップスクリプト実行（nvm、npm、macOS設定等）
-# diff-highlight の symlink 作成で sudo パスワードが必要
-cd ~/.local/share/chezmoi
-./setup.sh
 ```
 
 zsh プラグインは [sheldon](https://github.com/rossmacarthur/sheldon) で管理しており、設定は `~/.config/sheldon/plugins.toml`。初回シェル起動時にプラグインが自動的にcloneされる。

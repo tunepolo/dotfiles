@@ -1,8 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# macOS の Finder / IM / Dock のデフォルト設定を適用する。
+# chezmoi apply 時に一度だけ実行され、内容が変わると再度実行される。
+
+set -euo pipefail
 
 if [ "$(uname)" != "Darwin" ] ; then
 	echo "Not mac, skip setting"
-	exit 1
+	exit 0
 fi
 
 # デフォルトで隠しファイルを表示する
@@ -25,13 +29,13 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # 設定変更したアプリを再起動する
-killall "Finder" &> /dev/null
+killall "Finder" &> /dev/null || true
 
 # ライブ変換をオフにする
 defaults write com.apple.inputmethod.Kotoeri LiveConversionEnabled -bool false
 
 # 反映のため日本語IMを再起動
-killall -u "$USER" JapaneseIM
+killall -u "$USER" JapaneseIM &> /dev/null || true
 
 # Dockを自動的に隠す
 defaults write com.apple.dock autohide -bool true
