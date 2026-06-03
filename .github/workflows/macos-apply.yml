@@ -1,0 +1,64 @@
+name: chezmoi apply (macOS)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  apply:
+    name: chezmoi apply on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install chezmoi
+        run: brew install chezmoi
+
+      - name: Configure chezmoi data (non-interactive)
+        run: |
+          mkdir -p "$HOME/.config/chezmoi"
+          cat > "$HOME/.config/chezmoi/chezmoi.toml" <<'EOF'
+          [data]
+              email = "ci@example.com"
+              name = "CI Runner"
+          EOF
+
+      - name: chezmoi apply (first run — run_once_after scripts execute)
+        run: |
+          dest="$(mktemp -d)"
+          echo "CHEZMOI_DEST=$dest" >> "$GITHUB_ENV"
+          chezmoi apply \
+            --source="${GITHUB_WORKSPACE}" \
+            --destination="$dest" \
+            --verbose
+
+      - name: Verify run_once scripts recorded in chezmoi state
+        run: |
+          chezmoi state dump --bucket=scriptState | tee state.log
+          missing=0
+          for s in \
+            run_once_after_01_macos-defaults.sh \
+            run_once_after_02_diff-highlight.sh \
+            run_once_after_03_npm-globals.sh; do
+            if ! grep -q "$s" state.log; then
+              echo "::error::$s not recorded in scriptState (script may not have executed)"
+              missing=$((missing + 1))
+            fi
+          done
+          [ "$missing" -eq 0 ]
+
+      - name: Run chezmoiscripts behavior tests on macOS
+        run: bash tests/chezmoiscripts.test.sh
+
+      - name: chezmoi apply (second run — must succeed, scripts skipped via hash)
+        run: |
+          chezmoi apply \
+            --source="${GITHUB_WORKSPACE}" \
+            --destination="${CHEZMOI_DEST}" \
+            --verbose
