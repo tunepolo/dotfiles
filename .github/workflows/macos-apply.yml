@@ -40,13 +40,14 @@ jobs:
 
       - name: Verify run_once scripts recorded in chezmoi state
         run: |
-          chezmoi state dump --bucket=scriptState | tee state.log
+          chezmoi state get-bucket --bucket=scriptState | tee state.log
           missing=0
+          # state に記録される name は run_once_after_ プレフィックスを strip した形
           for s in \
-            run_once_after_01_macos-defaults.sh \
-            run_once_after_02_diff-highlight.sh \
-            run_once_after_03_npm-globals.sh; do
-            if ! grep -q "$s" state.log; then
+            01_macos-defaults.sh \
+            02_diff-highlight.sh \
+            03_npm-globals.sh; do
+            if ! grep -q "\.chezmoiscripts/$s" state.log; then
               echo "::error::$s not recorded in scriptState (script may not have executed)"
               missing=$((missing + 1))
             fi
