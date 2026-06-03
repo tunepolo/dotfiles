@@ -54,9 +54,6 @@ jobs:
           done
           [ "$missing" -eq 0 ]
 
-      - name: Run chezmoiscripts behavior tests on macOS
-        run: bash tests/chezmoiscripts.test.sh
-
       - name: chezmoi apply (second run — must succeed, scripts skipped via hash)
         run: |
           chezmoi apply \

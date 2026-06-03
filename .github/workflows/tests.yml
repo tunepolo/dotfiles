@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  chezmoiscripts:
+    name: chezmoiscripts test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run chezmoiscripts behavior tests
+        run: bash tests/chezmoiscripts.test.sh
+
+  pre-commit-hook:
+    name: pre-commit hook test (macOS)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install betterleaks
+        run: brew install betterleaks
+
+      - name: Run pre-commit hook tests
+        run: bash tests/pre-commit-hook.test.sh
