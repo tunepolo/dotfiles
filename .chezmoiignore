@@ -1,4 +1,5 @@
 # chezmoiで管理しないファイル（ツール、スクリプト、ドキュメント等）
+.claude/settings.local.json
 Readme.md
 LICENSE
 .git/
