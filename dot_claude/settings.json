@@ -1,4 +1,5 @@
 {
+  "preferredNotifChannel": "ghostty",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.py"
