@@ -13,26 +13,29 @@
 # chezmoiのインストール
 brew install chezmoi
 
-# dotfilesリポジトリをcloneして設定ファイルを適用
+# dotfilesリポジトリをcloneして chezmoi を初期化する
 # 実行中に `email` と `name` を対話的に入力する（git config の [user] に反映される）
-# 適用直後に .chezmoiscripts/ 配下のセットアップスクリプト（macOS defaults、
-# diff-highlight symlink、npm グローバルパッケージ）が自動実行される。
-# diff-highlight の symlink 作成で sudo パスワードを求められる場合がある。
-chezmoi init --apply https://github.com/tunepolo/dotfiles.git
+chezmoi init https://github.com/tunepolo/dotfiles.git
 
-# ツール・アプリケーションのインストール
+# ツール・アプリケーションのインストール（mise を含む）
 # Mac App Store アプリ（Bitwarden, iMovie 等）が含まれるため、
 # 事前に App Store にサインインしておく
-brew bundle --global
+brew bundle --file "$(chezmoi source-path)/dot_Brewfile"
+
+# miseのグローバルセットアップ
+# npm-globals スクリプトが mise 管理の node を使えるよう、apply より先に実行する
+mise use --global node@lts ruby@latest python@latest
+
+# 設定ファイルを適用
+# .chezmoiscripts/ 配下のセットアップスクリプト（macOS defaults、
+# diff-highlight symlink、npm グローバルパッケージ）が自動実行される。
+# diff-highlight の symlink 作成で sudo パスワードを求められる場合がある。
+chezmoi apply
 ```
 
 zsh プラグインは [sheldon](https://github.com/rossmacarthur/sheldon) で管理しており、設定は `~/.config/sheldon/plugins.toml`。初回シェル起動時にプラグインが自動的にcloneされる。
 
-Ruby / Python / Node 等のバージョン管理は [mise](https://mise.jdx.dev/) で統合している。リポジトリごとに `.tool-versions` / `.node-version` 等を置けば `cd` した瞬間に自動で切り替わる。グローバル版を入れたい場合：
-
-```bash
-mise use --global node@lts ruby@latest python@latest
-```
+Ruby / Python / Node 等のバージョン管理は [mise](https://mise.jdx.dev/) で統合している。リポジトリごとに `.tool-versions` / `.node-version` 等を置けば `cd` した瞬間に自動で切り替わる。
 
 エディタは Neovim を使用。設定は `~/.config/nvim/` 配下に集約：
 
