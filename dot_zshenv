@@ -26,6 +26,10 @@ path=(
 /usr/X11R6/bin(N-/)
 $HOME/.local/bin(N-/)
 $HOME/bin(N-/)
+# mise シムを非インタラクティブシェル（スクリプト・エディタ統合等）でも有効にする。
+# .zshrc の `mise activate zsh` はインタラクティブシェル専用のため、
+# 非インタラクティブシェルでは PATH に乗らずツールが見つからない問題を回避。
+$HOME/.local/share/mise/shims(N-/)
 )
 
 # sudo時のパスの設定
