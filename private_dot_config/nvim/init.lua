@@ -100,10 +100,6 @@ map("n", "<F2>", "<ESC>:bp<CR>")
 map("n", "<F3>", "<ESC>:bn<CR>")
 map("n", "<F4>", "<ESC>:bw<CR>")
 
--- 表示行単位の移動
-map("n", "j", "gj")
-map("n", "k", "gk")
-
 -- ESC×2 でハイライト消去
 map("n", "<ESC><ESC>", ":nohlsearch<CR><ESC>")
 
