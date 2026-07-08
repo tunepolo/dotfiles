@@ -97,11 +97,10 @@ return {
   --================================================================
   {
     "rhysd/accelerated-jk",
-    keys = { "j", "k" },
-    init = function()
-      vim.keymap.set("n", "j", "<Plug>(accelerated_jk_gj)")
-      vim.keymap.set("n", "k", "<Plug>(accelerated_jk_gk)")
-    end,
+    keys = {
+      { "j", "<Plug>(accelerated_jk_gj)", mode = "n" },
+      { "k", "<Plug>(accelerated_jk_gk)", mode = "n" },
+    },
   },
 
   --================================================================
