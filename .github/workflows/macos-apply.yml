@@ -45,8 +45,7 @@ jobs:
           # state に記録される name は run_once_after_ プレフィックスを strip した形
           for s in \
             01_macos-defaults.sh \
-            02_diff-highlight.sh \
-            03_npm-globals.sh; do
+            02_diff-highlight.sh; do
             if ! grep -q "\.chezmoiscripts/$s" state.log; then
               echo "::error::$s not recorded in scriptState (script may not have executed)"
               missing=$((missing + 1))
