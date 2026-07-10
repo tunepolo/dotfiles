@@ -71,15 +71,7 @@ else
   fail "${MACOS_SCRIPT} not found (skip non-Darwin behavior check)"
 fi
 
-echo "case 4: npm-globals スクリプトは mise tools に移行済みで存在しない"
-NPM_SCRIPT="${CHEZMOI_SCRIPTS_DIR}/run_once_after_03_npm-globals.sh"
-if [[ ! -f "${NPM_SCRIPT}" ]]; then
-  pass "run_once_after_03_npm-globals.sh は削除済み"
-else
-  fail "run_once_after_03_npm-globals.sh がまだ存在する（mise tools への移行が未完了）"
-fi
-
-echo "case 5: mise config に npm グローバルパッケージが定義されている"
+echo "case 4: mise config に npm グローバルパッケージが定義されている"
 MISE_CONFIG="${REPO_ROOT}/private_dot_config/mise/config.toml"
 assert_file_contains "${MISE_CONFIG}" '^"npm:npm-check-updates"' "npm:npm-check-updates が mise config に存在する"
 assert_file_contains "${MISE_CONFIG}" '^"npm:git-delete-squashed"' "npm:git-delete-squashed が mise config に存在する"
