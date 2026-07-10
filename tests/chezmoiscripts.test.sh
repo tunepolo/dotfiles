@@ -35,7 +35,6 @@ assert_file_contains() {
 EXPECTED_SCRIPTS=(
   "run_once_after_01_macos-defaults.sh"
   "run_once_after_02_diff-highlight.sh"
-  "run_once_after_03_npm-globals.sh"
 )
 
 echo "case 1: .chezmoiscripts に期待するスクリプトが存在する"
@@ -72,17 +71,10 @@ else
   fail "${MACOS_SCRIPT} not found (skip non-Darwin behavior check)"
 fi
 
-echo "case 4: npm globals スクリプトは npm が無いとき 0 終了する"
-NPM_SCRIPT="${CHEZMOI_SCRIPTS_DIR}/run_once_after_03_npm-globals.sh"
-if [[ -f "${NPM_SCRIPT}" ]]; then
-  STUB_DIR="$(mktemp -d)"
-  PATH="${STUB_DIR}:/usr/bin:/bin" bash "${NPM_SCRIPT}" >/dev/null 2>&1
-  rc=$?
-  rm -rf "${STUB_DIR}"
-  assert_exit 0 "${rc}" "npm 不在での実行は 0 終了"
-else
-  fail "${NPM_SCRIPT} not found (skip npm-missing behavior check)"
-fi
+echo "case 4: mise config に npm グローバルパッケージが定義されている"
+MISE_CONFIG="${REPO_ROOT}/private_dot_config/mise/config.toml"
+assert_file_contains "${MISE_CONFIG}" '^"npm:npm-check-updates"' "npm:npm-check-updates が mise config に存在する"
+assert_file_contains "${MISE_CONFIG}" '^"npm:git-delete-squashed"' "npm:git-delete-squashed が mise config に存在する"
 
 echo ""
 echo "結果: ${PASS} pass / ${FAIL} fail"
