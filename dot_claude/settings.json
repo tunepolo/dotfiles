@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "grep -q '\"dangerouslyDisableSandbox\"[[:space:]]*:[[:space:]]*true' && echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"サンドボックス外での実行には承認が必要です\"}}'; exit 0",
+            "command": "input=$(cat); cmd=$(printf '%s' \"$input\" | jq -r '.tool_input.command // \"\"'); flag=$(printf '%s' \"$input\" | jq -r '.tool_input.dangerouslyDisableSandbox // false'); if [ \"$flag\" = \"true\" ] || printf '%s' \"$cmd\" | grep -Eq '(^|[;&|]|\\$\\()\\s*git\\s+(-c|-C|--exec-path|--upload-pack|--receive-pack)(\\s|=|$)'; then printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"サンドボックス外実行またはgitの危険なグローバルオプション使用には承認が必要です\"}}'; fi; exit 0",
             "timeout": 10,
             "statusMessage": "sandbox-escape-gate"
           }
@@ -28,7 +28,29 @@
   },
   "permissions": {
     "allow": [
-      "Bash(git *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git log)",
+      "Bash(git log *)",
+      "Bash(git diff)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git branch)",
+      "Bash(git branch *)",
+      "Bash(git remote -v)",
+      "Bash(git fetch)",
+      "Bash(git fetch *)",
+      "Bash(git pull)",
+      "Bash(git pull *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git stash*)",
+      "Bash(git tag*)",
+      "Bash(git rev-parse *)",
+      "Bash(git blame *)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
@@ -96,7 +118,14 @@
         "~/.netrc",
         "~/.config/gcloud/",
         "~/.config/gh/",
-        "~/.kube/"
+        "~/.kube/",
+        "**/.env",
+        "**/.env.*",
+        "**/.envrc",
+        "**/secrets/**",
+        "**/credentials",
+        "**/*.pem",
+        "**/*.key"
       ],
       "allowWrite": [
         "~/.npm",
