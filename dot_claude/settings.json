@@ -11,7 +11,150 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -q '\"dangerouslyDisableSandbox\"[[:space:]]*:[[:space:]]*true' && echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"サンドボックス外での実行には承認が必要です\"}}'; exit 0",
+            "timeout": 10,
+            "statusMessage": "sandbox-escape-gate"
+          }
+        ]
+      }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:*.githubusercontent.com)",
+      "WebFetch(domain:*.googleapis.com)",
+      "WebFetch(domain:accounts.google.com)",
+      "WebFetch(domain:*.slack.com)",
+      "WebFetch(domain:*.amazonaws.com)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "WebFetch(domain:registry.terraform.io)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebSearch(*)"
+    ],
+    "ask": [
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(kubectl apply*)",
+      "Bash(kubectl delete*)",
+      "Bash(docker push*)",
+      "Bash(gh pr merge*)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.envrc)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials)",
+      "Read(~/.aws/credentials)",
+      "Read(~/.aws/config)",
+      "Read(~/.ssh/id_*)",
+      "Read(~/.netrc)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(~/.config/gcloud/application_default_credentials.json)",
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f *)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": true,
+    "excludedCommands": [
+      "git *",
+      "docker *",
+      "docker-compose *",
+      "gh *",
+      "chezmoi *",
+      "gcloud *",
+      "bq *",
+      "gsutil *",
+      "aws *",
+      "kubectl *",
+      "terraform *"
+    ],
+    "filesystem": {
+      "denyRead": [
+        "~/.aws/",
+        "~/.ssh/",
+        "~/.netrc",
+        "~/.config/gcloud/",
+        "~/.config/gh/",
+        "~/.kube/"
+      ],
+      "allowWrite": [
+        "~/.npm",
+        "~/.pnpm-store",
+        "~/go/pkg",
+        "~/Library/Caches/go-build",
+        "~/.gradle/caches",
+        "~/.gradle/wrapper",
+        "~/.m2/repository",
+        "~/.cargo/registry",
+        "~/.cargo/git",
+        "~/.cache"
+      ]
+    },
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "api.github.com",
+        "raw.githubusercontent.com",
+        "*.githubusercontent.com",
+        "registry.npmjs.org",
+        "*.npmjs.com",
+        "registry.yarnpkg.com",
+        "rubygems.org",
+        "*.rubygems.org",
+        "pypi.org",
+        "*.pypi.org",
+        "files.pythonhosted.org",
+        "proxy.golang.org",
+        "sum.golang.org",
+        "golang.org",
+        "crates.io",
+        "static.crates.io",
+        "index.crates.io",
+        "static.rust-lang.org",
+        "repo.maven.apache.org",
+        "repo1.maven.org",
+        "*.gradle.org",
+        "packagist.org",
+        "repo.packagist.org",
+        "*.googleapis.com",
+        "accounts.google.com",
+        "*.google.com",
+        "*.googleusercontent.com",
+        "*.slack.com",
+        "files.slack.com",
+        "*.amazonaws.com",
+        "registry.terraform.io",
+        "*.terraform.io",
+        "registry-1.docker.io",
+        "*.docker.io",
+        "api.anthropic.com",
+        "*.anthropic.com",
+        "claude.ai",
+        "*.claude.ai"
+      ]
+    }
   },
   "statusLine": {
     "type": "command",
