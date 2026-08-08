@@ -1,10 +1,21 @@
 autoload -U promptinit
 promptinit
 
+# fpath の重複を除去（sheldon 等が同じディレクトリを複数回追加するため）
+typeset -U fpath
+
 # compinit を sheldon 読み込み前に走らせる
 # （zsh-better-npm-completion 等が source 中に compdef を呼ぶため）
+# .zcompdump が24時間以内に更新されていればセキュリティ監査(compaudit)をスキップして高速化
 autoload -Uz compinit
-compinit
+zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+zcompdump_stale=( ${zcompdump}(Nmh+24) )
+if [[ ! -e $zcompdump ]] || (( $#zcompdump_stale )); then
+	compinit
+else
+	compinit -C
+fi
+unset zcompdump zcompdump_stale
 
 # sheldon でプラグインを読み込み（設定は ~/.config/sheldon/plugins.toml）
 if command -v sheldon &>/dev/null; then
