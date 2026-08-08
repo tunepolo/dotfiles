@@ -1,5 +1,5 @@
 schema_version = 1
-snapzy_min_version = "1.29.1"
+snapzy_min_version = "1.30.1"
 
 [general]
 language = "ja"
@@ -7,8 +7,8 @@ appearance = "system"
 play_sounds = true
 url_scheme_enabled = true
 show_menu_bar_icon = true
-start_at_login = false
-export_location = "~/Desktop/Snapzy"
+start_at_login = true
+export_location = "~/Pictures/Snapzy"
 
 [updates]
 check_automatically = true
@@ -49,14 +49,12 @@ save = true
 quick_access = true
 copy_file = true
 open_annotate = false
-upload_to_cloud = false
 
 [capture.after.recording]
 save = true
 quick_access = true
 copy_file = true
 open_annotate = false
-upload_to_cloud = false
 
 [recording]
 format = "mov"
@@ -69,6 +67,7 @@ microphone_device_id = "system-default"
 remember_last_area = true
 include_snapzy = false
 show_cursor = true
+dim_non_selected_area = true
 highlight_clicks = false
 show_keystrokes = false
 video_editor_zoom_transition_duration = 0.4
@@ -144,6 +143,7 @@ clipboard_image_open_behavior = "ask"
 close_after_drag = true
 bring_forward_after_drag = false
 quick_properties_sync = true
+combine_save_as_edit = true
 
 [shortcuts]
 enabled = true
