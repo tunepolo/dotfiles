@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "input=$(cat); cmd=$(printf '%s' \"$input\" | jq -r '.tool_input.command // \"\"'); flag=$(printf '%s' \"$input\" | jq -r '.tool_input.dangerouslyDisableSandbox // false'); if [ \"$flag\" = \"true\" ] || printf '%s' \"$cmd\" | grep -Eq '(^|[;&|]|\\$\\()\\s*git\\s+(-c|-C|--exec-path|--upload-pack|--receive-pack)(\\s|=|$)'; then printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"サンドボックス外実行またはgitの危険なグローバルオプション使用には承認が必要です\"}}'; fi; exit 0",
+            "command": "input=$(cat); cmd=$(printf '%s' \"$input\" | jq -r '.tool_input.command // \"\"'); flag=$(printf '%s' \"$input\" | jq -r '.tool_input.dangerouslyDisableSandbox // false'); danger=false; [ \"$flag\" = \"true\" ] && danger=true; printf '%s' \"$cmd\" | grep -Eq '(^|[[:space:]])(--upload-pack|--receive-pack|--exec-path)(=|[[:space:]]|$)' && danger=true; printf '%s' \"$cmd\" | grep -Eq '(^|[[:space:]])(GIT_SSH_COMMAND=|GIT_CONFIG_[A-Za-z_]*=)' && danger=true; if printf '%s' \"$cmd\" | grep -Eq '(^|[[:space:]])git([[:space:]]|$)' && printf '%s' \"$cmd\" | grep -Eq '(^|[[:space:]])(-c|-C)([[:space:]]|=|$)'; then danger=true; fi; if [ \"$danger\" = \"true\" ]; then printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"サンドボックス外実行またはgitの危険なグローバルオプション使用には承認が必要です\"}}'; fi; exit 0",
             "timeout": 10,
             "statusMessage": "sandbox-escape-gate"
           }
@@ -91,7 +91,12 @@
       "Bash(git push --force *)",
       "Bash(git push -f *)",
       "Bash(git reset --hard *)",
-      "Bash(git clean -f *)"
+      "Bash(git clean -f *)",
+      "Bash(git * --upload-pack*)",
+      "Bash(git * --receive-pack*)",
+      "Bash(git * --exec-path*)",
+      "Bash(git -c *)",
+      "Bash(git -C *)"
     ]
   },
   "sandbox": {
