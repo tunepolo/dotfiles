@@ -5,7 +5,7 @@ promptinit
 typeset -U fpath
 
 # compinit を sheldon 読み込み前に走らせる
-# （zsh-better-npm-completion 等が source 中に compdef を呼ぶため）
+# （carapace / gibo-completion 等が source 中に compdef を呼ぶため）
 # .zcompdump が24時間以内に更新されていればセキュリティ監査(compaudit)をスキップして高速化
 autoload -Uz compinit
 zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"

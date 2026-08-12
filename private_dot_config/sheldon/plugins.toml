@@ -18,14 +18,22 @@ github = "zsh-users/zsh-autosuggestions"
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
 
-[plugins.zsh-better-npm-completion]
-github = "lukechilds/zsh-better-npm-completion"
-
 [plugins.zsh-ssh]
 github = "zpm-zsh/ssh"
 
 [plugins.git-open]
 github = "paulirish/git-open"
+
+# carapace はマルチシェル対応の補完エンジン（約1000コマンドの spec を内蔵）
+# 他の補完プラグインより後に読み込み、compdef を上書きさせる
+# 特定コマンドを zsh 標準の補完に戻したい場合は CARAPACE_EXCLUDES='git,npm' のように指定する
+[plugins.carapace]
+inline = '''
+if command -v carapace &>/dev/null; then
+	zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+	source <(carapace _carapace)
+fi
+'''
 
 # zsh-syntax-highlighting は最後に読み込む
 # （他プラグインで定義された関数・コマンドもハイライト対象にするため）
