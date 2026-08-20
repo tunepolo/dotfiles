@@ -24,6 +24,20 @@ jobs:
       - name: Run chezmoiscripts behavior tests
         run: bash tests/chezmoiscripts.test.sh
 
+  bash-guard:
+    name: bash-guard hook test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Run bash-guard behavior tests
+        run: bash tests/bash-guard.test.sh
+
   pre-commit-hook:
     name: pre-commit hook test (macOS)
     runs-on: macos-latest
