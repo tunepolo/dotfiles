@@ -32,6 +32,14 @@
 - 一時ファイルは `/tmp` 直下ではなくスクラッチパッド（`$TMPDIR`）に置くこと。`/tmp` はサンドボックスが書き込みを拒否する
 - `git` と `gh` はサンドボックス外で走る扱いのため、ビルドやテストと同じコマンドに混ぜないこと。`go test ./... && git commit ...` のような複合はコマンド全体が昇格対象になり、`gh` をループやパイプの中で呼ぶと自分の設定ファイルを読めずに失敗する
 - 破壊的な git 操作（force push、`reset --hard`、`clean -f`、履歴改変）は `bash-guard.sh` フックが拒否する。回避せず、必要なら人手での実行を提案すること
+- ループバック接続（`localhost` / `127.0.0.1`）とローカルの listen は `sandbox.network.allowLocalBinding` で許可済み。統合テスト、E2E、dev サーバ、Playwright、Go の `httptest`、`curl http://localhost:*` はサンドボックス内で走るので escape を付けないこと
+- `git` `gh` `docker` などは `sandbox.excludedCommands` により既にサンドボックス外で走る。これらに `dangerouslyDisableSandbox` を付けても実行結果は変わらず、承認プロンプトだけが増えるので付けないこと
+- 承認プロンプトを伴うコマンド（`dangerouslyDisableSandbox` 付き、`docker exec` / `docker run` / `docker compose exec` などの変更系）では、`description` に日本語で次の4点を書くこと。ユーザはこの説明だけを見て可否を判断する
+  - 目的：何のために実行するのか
+  - 副作用：書き込むパス、触る DB とテーブル、接続先ホスト、削除や上書きの有無
+  - 可逆性：元に戻せるか。戻し方、またはバックアップの場所
+  - escape の理由：`dangerouslyDisableSandbox` を付ける場合、サンドボックス内で何がどう失敗したか
+  ヒアドキュメントで渡すスクリプトは、コマンド文字列を読ませて理解させるのではなく、`description` 側で何をするスクリプトかを説明すること
 
 ## 文章執筆
 

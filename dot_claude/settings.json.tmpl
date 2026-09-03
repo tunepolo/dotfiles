@@ -1,0 +1,298 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:*.githubusercontent.com)",
+      "WebFetch(domain:*.googleapis.com)",
+      "WebFetch(domain:accounts.google.com)",
+      "WebFetch(domain:*.slack.com)",
+      "WebFetch(domain:*.amazonaws.com)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "WebFetch(domain:registry.terraform.io)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebSearch(*)",
+      "Bash(docker ps)",
+      "Bash(docker ps *)",
+      "Bash(docker images)",
+      "Bash(docker images *)",
+      "Bash(docker logs *)",
+      "Bash(docker inspect *)",
+      "Bash(docker version *)",
+      "Bash(docker compose ps)",
+      "Bash(docker compose ps *)",
+      "Bash(docker compose logs *)",
+      "mcp__claude_ai_Google_Drive__search_files",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Atlassian_Rovo__getJiraIssue"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.local)",
+      "Read(**/.env.*.local)",
+      "Read(**/.env.dev*)",
+      "Read(**/.env.development*)",
+      "Read(**/.env.stg*)",
+      "Read(**/.env.staging*)",
+      "Read(**/.env.prod*)",
+      "Read(**/.env.production*)",
+      "Read(**/.env.test*)",
+      "Read(**/.env_*)",
+      "Read(**/.envrc)",
+      "Read(**/.envrc.local)",
+      "Read(**/secrets/**)",
+      "Read(**/credentials.json)",
+      "Read(**/credentials.yml)",
+      "Read(**/credentials.yaml)",
+      "Read(**/credentials.db)",
+      "Read(~/.aws/credentials)",
+      "Read(~/.aws/config)",
+      "Read(~/.ssh/**)",
+      "Read(~/.netrc)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(~/.config/gcloud/application_default_credentials.json)",
+      "Read(~/.config/gh/hosts.yml)",
+      "Bash(sudo *)",
+      "Bash(su *)",
+      "Bash(git filter-repo*)",
+      "Bash(git filter-branch*)",
+      "Bash(gh repo delete*)"
+    ],
+    "ask": [
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(kubectl apply*)",
+      "Bash(kubectl delete*)",
+      "Bash(docker push*)",
+      "Bash(gh pr merge*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/bash-guard.sh\"",
+            "timeout": 10,
+            "statusMessage": "bash-guard"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.py"
+  },
+  "enabledPlugins": {
+    "crit@crit": true,
+    "frontend-design@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "dart-flutter@dart-flutter": true,
+    "modern-web-guidance@googlechrome": true,
+    "claude-security@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "datadog-pup": {
+      "source": {
+        "source": "github",
+        "repo": "datadog-labs/pup"
+      }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "crit": {
+      "source": {
+        "source": "github",
+        "repo": "tomasz-tomczyk/crit"
+      }
+    },
+    "dart-flutter": {
+      "source": {
+        "source": "github",
+        "repo": "flutter/agent-plugins"
+      }
+    },
+    "googlechrome": {
+      "source": {
+        "source": "github",
+        "repo": "GoogleChrome/modern-web-guidance"
+      }
+    }
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "api.github.com",
+        "raw.githubusercontent.com",
+        "*.githubusercontent.com",
+        "registry.npmjs.org",
+        "*.npmjs.com",
+        "registry.yarnpkg.com",
+        "rubygems.org",
+        "*.rubygems.org",
+        "pypi.org",
+        "*.pypi.org",
+        "files.pythonhosted.org",
+        "proxy.golang.org",
+        "sum.golang.org",
+        "golang.org",
+        "crates.io",
+        "static.crates.io",
+        "index.crates.io",
+        "static.rust-lang.org",
+        "repo.maven.apache.org",
+        "repo1.maven.org",
+        "*.gradle.org",
+        "packagist.org",
+        "repo.packagist.org",
+        "*.googleapis.com",
+        "accounts.google.com",
+        "*.google.com",
+        "*.googleusercontent.com",
+        "*.slack.com",
+        "files.slack.com",
+        "*.amazonaws.com",
+        "registry.terraform.io",
+        "*.terraform.io",
+        "registry-1.docker.io",
+        "*.docker.io",
+        "api.anthropic.com",
+        "*.anthropic.com",
+        "claude.ai",
+        "*.claude.ai"
+      ],
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "/var/folders/*/*/T",
+        "~/.npm",
+        "~/.pnpm-store",
+        "~/go/pkg",
+        "~/Library/Caches/go-build",
+        "~/Library/Caches/golangci-lint",
+        "~/Library/Caches/Yarn",
+        "~/Library/Caches/mise",
+        "~/.gradle/caches",
+        "~/.gradle/wrapper",
+        "~/.m2/repository",
+        "~/.cargo/registry",
+        "~/.cargo/git",
+        "~/.cache"
+      ],
+      "denyRead": [
+        "~/.aws/",
+        "~/.ssh/",
+        "~/.netrc",
+        "~/.config/gcloud/",
+        "~/.config/gh/",
+        "~/.kube/",
+        "**/.env",
+        "**/.env.local",
+        "**/.env.*.local",
+        "**/.env.dev*",
+        "**/.env.development*",
+        "**/.env.stg*",
+        "**/.env.staging*",
+        "**/.env.prod*",
+        "**/.env.production*",
+        "**/.env.test*",
+        "**/.env_*",
+        "**/.envrc",
+        "**/.envrc.local",
+        "**/secrets/**",
+        "**/credentials.json",
+        "**/credentials.yml",
+        "**/credentials.yaml",
+        "**/credentials.db",
+        "**/*.pem",
+        "**/*.key"
+      ]
+    },
+    "excludedCommands": [
+      "git *",
+      "docker *",
+      "docker-compose *",
+      "gh *",
+      "chezmoi *",
+      "gcloud *",
+      "bq *",
+      "gsutil *",
+      "aws *",
+      "kubectl *",
+      "terraform *"
+    ]
+  },
+  "skipWorkflowUsageWarning": true,
+  "preferredNotifChannel": "ghostty",
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: assume private unless the remote host and repo name indicate otherwise, or a visibility check in the transcript shows public",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: unknown — origin/HEAD unset and no remotes configured; the repo's own docs say to branch from the default branch tracked to remote, but no branch name or protection data is available",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo and its remote(s) only (no additional orgs configured) — as scoped by the Trusted repo and Repository visibility entries above; note this checkout ({{ .chezmoi.homeDir }}) has no configured remotes",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar — note this working directory is the home directory itself, so dotfiles, shell history, and credential files sit inside the working tree",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches `prod-db`, not `producer`)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development, plus Japanese-language technical writing and editing (book chapters, articles, documentation) per the user's own CLAUDE.md",
+      "**Trusted repo**: The git repository the agent started in (its working directory) and its configured remote(s). When the repo's public/private visibility is given — by the Repository visibility entry or the user's own message — use it to scope what is OK to commit or push there: confidential material is fine in a private repo; in a public one, only that repo's own work is — and content ported, repointed, or first read from outside this session's repo is not its own work, whoever directed the port. Visibility scopes confidential material only: secrets and sensitive data (personal & entrusted) are never cleared into any repo by its visibility (see Definitions). Here that repo is {{ .chezmoi.homeDir }} with no remotes and zero tracked files.",
+      "**Org-specific CLIs**: chezmoi (dotfile management; 8x in this project's transcripts, 2x in shell history) — routine local dotfile read/apply operations under this home directory only",
+      "**Routine under this repo's prefix**: local-only development and writing work under {{ .chezmoi.homeDir }}; commands are expected to run inside the sandbox, with temp files in $TMPDIR rather than /tmp"
+    ],
+    "allow": [
+      "$defaults",
+      "Bash(chezmoi diff:*)",
+      "Bash(chezmoi status:*)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(chezmoi apply:*)",
+      "Bash(chezmoi forget:*)"
+    ]
+  }
+}
