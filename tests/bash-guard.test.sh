@@ -11,6 +11,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 GUARD="${REPO_ROOT}/dot_claude/hooks/bash-guard.sh"
 
+# 承認を要する経路で deny を回避できる長さの説明。目的・副作用・可逆性を書けば
+# 自然に超える量で、閾値ちょうどの検査は case 8 で別に行う。
+DESC_OK="統合テストを実行する。localhost:5432 の Postgres に接続し public スキーマを truncate して seed を入れ直す。使い捨て DB なので compose down -v で戻せる"
+
 PASS=0
 FAIL=0
 
@@ -22,11 +26,12 @@ require() {
 }
 
 # $1=期待する判定(pass|ask|deny) $2=ラベル $3=コマンド $4=サンドボックス外指定(既定 false)
+# $5=description(既定 空)。承認を要する経路では 80 バイト以上ないと deny になる
 assert_decision() {
-  local expected="$1" label="$2" command="$3" escape="${4:-false}"
+  local expected="$1" label="$2" command="$3" escape="${4:-false}" description="${5:-}"
   local payload got
-  payload=$(jq -cn --arg c "${command}" --argjson e "${escape}" \
-    '{tool_input: {command: $c, dangerouslyDisableSandbox: $e}}')
+  payload=$(jq -cn --arg c "${command}" --arg d "${description}" --argjson e "${escape}" \
+    '{tool_input: {command: $c, description: $d, dangerouslyDisableSandbox: $e}}')
   got=$(printf '%s' "${payload}" | bash "${GUARD}" 2>/dev/null |
     jq -r '.hookSpecificOutput.permissionDecision // empty' 2>/dev/null)
   # 何も返さない = 素通り
@@ -76,7 +81,7 @@ assert_decision deny "filter-branch" 'git filter-branch --tree-filter x HEAD'
 assert_decision deny "gh repo delete" 'gh repo delete foo/bar'
 
 echo "case 4: サンドボックス外実行と認証情報の扱いは ask"
-assert_decision ask "サンドボックス外" 'go test ./...' true
+assert_decision ask "サンドボックス外" 'go test ./...' true "${DESC_OK}"
 assert_decision ask "gh auth token の埋め込み" 'GH_TOKEN=$(gh auth token) zizmor .'
 assert_decision ask "gh secret set" 'gh secret set FOO --body bar'
 assert_decision ask "gh api の書き込み" 'gh api -X DELETE repos/o/r/x'
@@ -107,6 +112,39 @@ else
   echo "  FAIL: 壊れた入力 (expected=ask actual=${got:-none})"
   FAIL=$((FAIL + 1))
 fi
+
+# 承認ダイアログに出るのは description だけなので、説明が薄いまま承認を求めるのを
+# 止める。deny なのは理由がモデルに返り、説明を書き直させられるためである。
+# 対象は実際に承認を要する経路に限る。サンドボックス内で完結するコマンドは
+# 自動許可でプロンプトが出ないので、ここで縛ると摩擦だけが増える。
+echo "case 8: 承認を要する経路は説明が無いと deny"
+assert_decision deny "サンドボックス外・説明なし" 'go test ./...' true
+assert_decision deny "サンドボックス外・説明が短い" 'go test ./...' true 'テスト実行'
+assert_decision ask "サンドボックス外・説明が十分" 'go test ./...' true "${DESC_OK}"
+assert_decision deny "docker exec・説明が短い" 'docker exec -i pg-1 psql -c "select 1"' false 'DB確認'
+assert_decision pass "docker exec・説明が十分" 'docker exec -i pg-1 psql -c "select 1"' false "${DESC_OK}"
+assert_decision deny "docker compose exec・説明が短い" 'docker compose exec -T db psql' false '確認'
+assert_decision deny "docker compose up -d・説明が短い" 'docker compose up -d' false '起動'
+assert_decision deny "docker cp・説明が短い" 'docker cp ./x.sql pg-1:/tmp/x.sql' false '転送'
+
+echo "case 9: 読み取り専用とサンドボックス内は説明を求めない"
+assert_decision pass "docker ps" 'docker ps --format json'
+assert_decision pass "docker compose ps" 'docker compose ps'
+assert_decision pass "docker logs" 'docker logs pg-1 --tail 20'
+assert_decision pass "サンドボックス内の npm run" 'npm run test:integration 2>&1 | tail -50'
+assert_decision pass "サンドボックス内の go test" 'go test ./... -count=1'
+# 単語の一部を拾わないこと。execute や runner は exec / run ではない
+assert_decision pass "docker という語を含むだけの文字列" 'grep -rn docker-compose.yml .'
+
+echo "case 10: 閾値は 80 バイト。境界を跨ぐところで判定が変わる"
+DESC_79=$(printf 'a%.0s' $(seq 1 79))
+DESC_80=$(printf 'a%.0s' $(seq 1 80))
+assert_decision deny "79 バイト" 'go test ./...' true "${DESC_79}"
+assert_decision ask "80 バイト" 'go test ./...' true "${DESC_80}"
+
+echo "case 11: 破壊的操作の deny は説明の有無より優先する"
+assert_decision deny "force push は説明があっても deny" 'git push --force origin main' false "${DESC_OK}"
+assert_decision deny "reset --hard は説明があっても deny" 'git reset --hard HEAD~1' false "${DESC_OK}"
 
 echo
 echo "pass=${PASS} fail=${FAIL}"
