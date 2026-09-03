@@ -42,7 +42,20 @@
       "WebFetch(domain:registry.terraform.io)",
       "WebFetch(domain:docs.anthropic.com)",
       "WebFetch(domain:code.claude.com)",
-      "WebSearch(*)"
+      "WebSearch(*)",
+      "Bash(docker ps)",
+      "Bash(docker ps *)",
+      "Bash(docker images)",
+      "Bash(docker images *)",
+      "Bash(docker logs *)",
+      "Bash(docker inspect *)",
+      "Bash(docker version *)",
+      "Bash(docker compose ps)",
+      "Bash(docker compose ps *)",
+      "Bash(docker compose logs *)",
+      "mcp__claude_ai_Google_Drive__search_files",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Atlassian_Rovo__getJiraIssue"
     ],
     "ask": [
       "Bash(terraform apply*)",
@@ -191,7 +204,8 @@
         "*.anthropic.com",
         "claude.ai",
         "*.claude.ai"
-      ]
+      ],
+      "allowLocalBinding": true
     }
   },
   "statusLine": {

@@ -29,6 +29,7 @@ input=$(cat)
 cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // empty') ||
   emit ask "フック入力の解析に失敗しました"
 escape=$(printf '%s' "$input" | jq -r '.tool_input.dangerouslyDisableSandbox // false')
+desc=$(printf '%s' "$input" | jq -r '.tool_input.description // ""')
 
 # ヒアドキュメントの本文は実行されるコマンドではないので検査対象から外す。
 # 含めたままにすると、コミットメッセージやドキュメントに書いた
@@ -79,9 +80,29 @@ if git_sub filter-repo || git_sub filter-branch; then
 fi
 gh_sub 'repo[[:space:]]+delete' && emit deny "リポジトリの削除は禁止です"
 
+# ---- deny: 承認を求める前に説明を書かせる ----
+# 承認プロンプトに出るのは description だけで、ヒアドキュメントで渡す長い
+# スクリプトはユーザが読んで判断できる形になっていない。説明が薄いまま承認を
+# 求めるのを止める。ask ではなく deny なのは、deny の理由だけがモデルに返り、
+# 説明を書き直して再提示させられるため。ユーザに丸投げしない。
+#
+# サンドボックス内で完結するコマンドは自動許可されプロンプトが出ないので、
+# ここは実際に承認を要する経路（escape と docker の変更系）だけを対象にする。
+needs_detail=false
+[ "$escape" = "true" ] && needs_detail=true
+has '(^|[^[:alnum:]_-])docker[[:space:]]+(exec|run|cp|rm|rmi|build|buildx|volume|network|push|kill|stop)([^[:alnum:]_-]|$)' &&
+  needs_detail=true
+has '(^|[^[:alnum:]_-])docker[[:space:]]+compose[[:space:]]+([a-z-]+[[:space:]]+)*(up|down|exec|run|restart|rm|kill|stop)([^[:alnum:]_-]|$)' &&
+  needs_detail=true
+
+# 80 バイト＝日本語で約 27 文字。目的・副作用・可逆性を書けばまず超える。
+if [ "$needs_detail" = true ] && [ "${#desc}" -lt 80 ]; then
+  emit deny "承認が必要なコマンドですが description が短すぎて可否を判断できません（${#desc} バイト）。日本語で「目的／副作用（書き込むパス・触る DB とテーブル・接続先ホスト・削除や上書きの有無）／元に戻せるか／サンドボックス外で実行する理由」を書いた description を付けて再提示してください。ヒアドキュメントの中身も description 側で説明してください"
+fi
+
 # ---- ask: サンドボックス外実行 ----
 [ "$escape" = "true" ] &&
-  emit ask "サンドボックス外実行には承認が必要です。一時ファイルは /tmp ではなく \$TMPDIR を使い、git/gh はビルドやテストと同じコマンドに混ぜないでください"
+  emit ask "サンドボックス外実行には承認が必要です（説明: ${desc}）。ループバック接続とローカル listen は allowLocalBinding で許可済みなので、それが理由なら escape は不要です"
 
 # ---- ask: 認証情報・書き込み系 API ----
 gh_sub 'auth[[:space:]]+token' && emit ask "認証トークンの取り出しには承認が必要です"
