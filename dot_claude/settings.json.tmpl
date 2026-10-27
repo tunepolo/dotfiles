@@ -201,7 +201,10 @@
         "claude.ai",
         "*.claude.ai"
       ],
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowUnixSockets": [
+        "/private/tmp/claude-502/tsx-502"
+      ]
     },
     "filesystem": {
       "allowWrite": [
@@ -215,6 +218,7 @@
         "~/Library/Caches/mise",
         "~/.gradle/caches",
         "~/.gradle/wrapper",
+        "~/.gradle/native",
         "~/.m2/repository",
         "~/.cargo/registry",
         "~/.cargo/git",
