@@ -80,6 +80,37 @@ if git_sub filter-repo || git_sub filter-branch; then
 fi
 gh_sub 'repo[[:space:]]+delete' && emit deny "リポジトリの削除は禁止です"
 
+# ---- deny: プロジェクト配下の git/gh に escape は要らない ----
+# excludedCommands は呼び出し全体が git/gh のときだけ効き、cd・-C・パイプが混ざると
+# サンドボックス内に残って認証や署名で落ちる。プロジェクト配下なら呼び出しを分ければ
+# 外に出られるので、承認を求める前に分けさせる。プロジェクト外のリポジトリは
+# cd が次の呼び出しに引き継がれず、分けても外に出られないので対象外。
+project=${CLAUDE_PROJECT_DIR:-$(printf '%s' "$input" | jq -r '.cwd // empty')}
+outside_project() { # cd / git -C の行き先にプロジェクト外か解決できないパスがあるか
+  local dir
+  while IFS= read -r dir; do
+    dir=${dir#[\"\']}
+    dir=${dir%[\"\']}
+    dir=${dir/#\~/$HOME}
+    dir=${dir//\$HOME/$HOME}
+    # 変数が残る行き先は解決できない。$TMPDIR の worktree などで分けても外に出られず
+    # deny が繰り返されるので、外とみなして判定を人に委ねる
+    [[ "$dir" == *\$* ]] && return 0
+    # .. を含む相対パスと cd - も、プロジェクトの外へ出うるので同じ扱いにする
+    [[ "$dir" == - || "$dir" == .. || "$dir" == ../* || "$dir" == */.. || "$dir" == */../* ]] && return 0
+    [[ "$dir" == /* && "$dir" != "$project" && "$dir" != "$project"/* ]] && return 0
+  done < <(printf '%s' "$cmd" |
+    grep -Eo '(^|[^[:alnum:]_-])(cd|git[[:space:]]+-C)[[:space:]]+[^[:space:];&|]+' | awk '{print $NF}')
+  return 1
+}
+if [ "$escape" = "true" ] && [ -n "$project" ] && { git_sub '[a-z-]+' || gh_sub '[a-z-]+'; } &&
+  ! outside_project; then
+  if has '(^|[^[:alnum:]_-])(cd|git[[:space:]]+-C)[[:space:]]' ||
+    has '\|[[:space:]]*(head|tail|grep|wc|sort|uniq|sed|awk|jq|cut|less|cat)([[:space:]]|$)'; then
+    emit deny "git/gh は呼び出し全体が git/gh だけならサンドボックス外で走るので escape は不要です。cd は単独の呼び出しで先に実行し（次の呼び出しに引き継がれる）、git -C は使わず、出力の絞り込みは -n・--oneline・--jq など git/gh 自身のオプションで行い、escape を外して再実行してください"
+  fi
+fi
+
 # ---- deny: 承認を求める前に説明を書かせる ----
 # 承認プロンプトに出るのは description だけで、ヒアドキュメントで渡す長い
 # スクリプトはユーザが読んで判断できる形になっていない。説明が薄いまま承認を
@@ -101,8 +132,12 @@ if [ "$needs_detail" = true ] && [ "${#desc}" -lt 80 ]; then
 fi
 
 # ---- ask: サンドボックス外実行 ----
+# 認証情報を読み込むものは日常の承認に埋もれやすいので、理由文の先頭で知らせる
+warn=""
+has "direnv([[:space:]]|$)|\.envrc|(^|[/[:space:]\"'])\.env([._][[:alnum:]_.-]*)?([[:space:]\"';|&)]|$)|\.ssh(/|[[:space:]]|$)|\.aws/|\.config/(gh|gcloud)|\.kube/|\.netrc|gh[[:space:]]+auth[[:space:]]+token|security[[:space:]]+find-(generic|internet)-password|(^|[[:space:]])op[[:space:]]+(read|item|inject)" &&
+  warn="⚠ 認証情報を読み込みます。"
 [ "$escape" = "true" ] &&
-  emit ask "サンドボックス外実行には承認が必要です（説明: ${desc}）。ループバック接続とローカル listen は allowLocalBinding で許可済みなので、それが理由なら escape は不要です"
+  emit ask "${warn}サンドボックス外実行には承認が必要です（説明: ${desc}）。ループバック接続とローカル listen は allowLocalBinding で許可済みなので、それが理由なら escape は不要です"
 
 # ---- ask: 認証情報・書き込み系 API ----
 gh_sub 'auth[[:space:]]+token' && emit ask "認証トークンの取り出しには承認が必要です"

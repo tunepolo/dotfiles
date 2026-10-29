@@ -146,6 +146,56 @@ echo "case 11: 破壊的操作の deny は説明の有無より優先する"
 assert_decision deny "force push は説明があっても deny" 'git push --force origin main' false "${DESC_OK}"
 assert_decision deny "reset --hard は説明があっても deny" 'git reset --hard HEAD~1' false "${DESC_OK}"
 
+# git/gh は excludedCommands でサンドボックス外に出るが、cd・-C・パイプが混ざると
+# 呼び出し全体がサンドボックス内に残る。プロジェクト配下なら呼び出しを分ければ
+# escape は要らないので、承認を求める前に突き返す。プロジェクト外のリポジトリは
+# 分けても外に出られないため対象外。
+export CLAUDE_PROJECT_DIR=/proj
+echo "case 12: プロジェクト配下の git/gh の escape は呼び出しを分けさせる"
+assert_decision deny "cd 絶対パス && git" 'cd /proj/repo && git commit -m x' true "${DESC_OK}"
+assert_decision deny "cd 相対パス && git" 'cd repo && git status' true "${DESC_OK}"
+assert_decision deny "git -C プロジェクト配下" 'git -C /proj/repo push origin main' true "${DESC_OK}"
+assert_decision deny "git の出力を head に渡す" 'git log --oneline | head -5' true "${DESC_OK}"
+assert_decision deny "gh の出力を grep に渡す" 'gh pr view 1 2>&1 | grep -v x' true "${DESC_OK}"
+assert_decision ask "プロジェクト外への cd" 'cd ~/.local/share/chezmoi && git commit -m x' true "${DESC_OK}"
+assert_decision ask "プロジェクト外への git -C" 'git -C /Users/x/dotfiles log | head' true "${DESC_OK}"
+assert_decision ask "前方一致だけの別ディレクトリ" 'cd /proj2/x && git status' true "${DESC_OK}"
+# 行き先を解決できないときは分けて済むと言い切れないので、判定を人に委ねる
+assert_decision ask "変数の行き先" 'cd "$W" && git status' true "${DESC_OK}"
+assert_decision ask "変数の git -C" 'git -C $WT log | head' true "${DESC_OK}"
+assert_decision ask "親ディレクトリへ出る相対パス" 'cd ../other-repo && git push' true "${DESC_OK}"
+assert_decision ask "cd -" 'cd - && git status' true "${DESC_OK}"
+assert_decision deny "下る相対パス" 'cd ./repo && git status' true "${DESC_OK}"
+assert_decision ask "git を含まないパイプ" 'npm run test:e2e 2>&1 | tail -20' true "${DESC_OK}"
+assert_decision pass "escape なしは対象外" 'cd /proj/repo && git status'
+
+# 認証情報を読み込む escape は日常の承認に埋もれやすいので、理由文の先頭で知らせる
+# $1=期待する警告の有無(warn|plain) $2=ラベル $3=コマンド
+assert_warning() {
+  local expected="$1" label="$2" command="$3" payload reason got=plain
+  payload=$(jq -cn --arg c "${command}" --arg d "${DESC_OK}" \
+    '{tool_input: {command: $c, description: $d, dangerouslyDisableSandbox: true}}')
+  reason=$(printf '%s' "${payload}" | bash "${GUARD}" 2>/dev/null |
+    jq -r '.hookSpecificOutput.permissionDecisionReason // empty' 2>/dev/null)
+  [[ "${reason}" == "⚠"* ]] && got=warn
+  if [[ "${got}" == "${expected}" ]]; then
+    echo "  ok: ${label} (${got})"
+    PASS=$((PASS + 1))
+  else
+    echo "  FAIL: ${label} (expected=${expected} actual=${got})"
+    FAIL=$((FAIL + 1))
+  fi
+}
+
+echo "case 13: 認証情報に触れる escape は理由文の先頭で警告する"
+assert_warning warn "direnv exec" 'direnv exec . python3 run.py'
+assert_warning warn ".envrc の source" 'source ./.envrc && python3 run.py'
+assert_warning warn ".env_prod のコピー" 'cp .env_diagnostics .env_prod'
+assert_warning warn ".ssh の一覧" 'ls -la ~/.ssh/'
+assert_warning warn "gh auth token" 'GH_TOKEN=$(gh auth token) zizmor .'
+assert_warning plain "通常のテスト" 'go test ./...'
+assert_warning plain "名前に .env を含むだけのファイル" 'cat docs/README.env.md'
+
 echo
 echo "pass=${PASS} fail=${FAIL}"
 [[ "${FAIL}" -eq 0 ]]
