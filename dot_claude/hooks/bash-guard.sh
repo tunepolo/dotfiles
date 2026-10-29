@@ -96,6 +96,8 @@ outside_project() { # cd / git -C の行き先にプロジェクト外か解決�
     # 変数が残る行き先は解決できない。$TMPDIR の worktree などで分けても外に出られず
     # deny が繰り返されるので、外とみなして判定を人に委ねる
     [[ "$dir" == *\$* ]] && return 0
+    # .. を含む相対パスと cd - も、プロジェクトの外へ出うるので同じ扱いにする
+    [[ "$dir" == - || "$dir" == .. || "$dir" == ../* || "$dir" == */.. || "$dir" == */../* ]] && return 0
     [[ "$dir" == /* && "$dir" != "$project" && "$dir" != "$project"/* ]] && return 0
   done < <(printf '%s' "$cmd" |
     grep -Eo '(^|[^[:alnum:]_-])(cd|git[[:space:]]+-C)[[:space:]]+[^[:space:];&|]+' | awk '{print $NF}')

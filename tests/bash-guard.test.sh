@@ -163,6 +163,9 @@ assert_decision ask "前方一致だけの別ディレクトリ" 'cd /proj2/x &&
 # 行き先を解決できないときは分けて済むと言い切れないので、判定を人に委ねる
 assert_decision ask "変数の行き先" 'cd "$W" && git status' true "${DESC_OK}"
 assert_decision ask "変数の git -C" 'git -C $WT log | head' true "${DESC_OK}"
+assert_decision ask "親ディレクトリへ出る相対パス" 'cd ../other-repo && git push' true "${DESC_OK}"
+assert_decision ask "cd -" 'cd - && git status' true "${DESC_OK}"
+assert_decision deny "下る相対パス" 'cd ./repo && git status' true "${DESC_OK}"
 assert_decision ask "git を含まないパイプ" 'npm run test:e2e 2>&1 | tail -20' true "${DESC_OK}"
 assert_decision pass "escape なしは対象外" 'cd /proj/repo && git status'
 
