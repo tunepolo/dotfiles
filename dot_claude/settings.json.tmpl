@@ -104,17 +104,18 @@
     "command": "~/.claude/statusline.py"
   },
   "enabledPlugins": {
-    "crit@crit": true,
     "frontend-design@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "dart-flutter@dart-flutter": true,
     "modern-web-guidance@googlechrome": true,
     "claude-security@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "modern-go-guidelines@goland-claude-marketplace": true
+    "modern-go-guidelines@goland-claude-marketplace": true,
+    "kotlin-lsp@claude-plugins-official": true,
+    "explainer@explainer": true,
+    "pstack@cursor-plugins": true
   },
   "extraKnownMarketplaces": {
     "datadog-pup": {
@@ -151,6 +152,18 @@
       "source": {
         "source": "github",
         "repo": "JetBrains/go-modern-guidelines"
+      }
+    },
+    "explainer": {
+      "source": {
+        "source": "github",
+        "repo": "mizchi/explainer"
+      }
+    },
+    "cursor-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "cursor/plugins"
       }
     }
   },
@@ -270,6 +283,16 @@
   "skipWorkflowUsageWarning": true,
   "preferredNotifChannel": "ghostty",
   "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(chezmoi diff:*)",
+      "Bash(chezmoi status:*)"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(chezmoi apply:*)",
+      "Bash(chezmoi forget:*)"
+    ],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
@@ -295,16 +318,6 @@
       "**Trusted repo**: The git repository the agent started in (its working directory) and its configured remote(s). When the repo's public/private visibility is given — by the Repository visibility entry or the user's own message — use it to scope what is OK to commit or push there: confidential material is fine in a private repo; in a public one, only that repo's own work is — and content ported, repointed, or first read from outside this session's repo is not its own work, whoever directed the port. Visibility scopes confidential material only: secrets and sensitive data (personal & entrusted) are never cleared into any repo by its visibility (see Definitions). Here that repo is {{ .chezmoi.homeDir }} with no remotes and zero tracked files.",
       "**Org-specific CLIs**: chezmoi (dotfile management; 8x in this project's transcripts, 2x in shell history) — routine local dotfile read/apply operations under this home directory only",
       "**Routine under this repo's prefix**: local-only development and writing work under {{ .chezmoi.homeDir }}; commands are expected to run inside the sandbox, with temp files in $TMPDIR rather than /tmp"
-    ],
-    "allow": [
-      "$defaults",
-      "Bash(chezmoi diff:*)",
-      "Bash(chezmoi status:*)"
-    ],
-    "soft_deny": [
-      "$defaults",
-      "Bash(chezmoi apply:*)",
-      "Bash(chezmoi forget:*)"
     ]
   }
 }

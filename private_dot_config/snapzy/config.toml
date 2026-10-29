@@ -1,9 +1,10 @@
 schema_version = 1
-snapzy_min_version = "1.31.0"
+snapzy_min_version = "2.1.0"
 
 [general]
 language = "ja"
 appearance = "system"
+use_liquid_glass = true
 play_sounds = true
 url_scheme_enabled = true
 show_menu_bar_icon = true
@@ -21,7 +22,7 @@ retention_days = 3
 
 [menu_bar]
 icon_style = "default"
-item_order = ["captureArea", "captureAreaAnnotate", "captureApplication", "captureFullscreen", "captureActiveWindow", "scrollingCapture", "captureOCR", "captureSmartElement", "captureObjectCutout", "recordScreen", "recordApplication", "openAnnotate", "combineImages", "editVideo", "cloudUploads", "openHistory", "shortcutList"]
+item_order = ["captureArea", "captureAreaAnnotate", "captureApplication", "captureFullscreen", "captureActiveWindow", "scrollingCapture", "captureOCR", "captureSmartElement", "captureObjectCutout", "captureDelayed", "captureDelayedFullscreen", "recordScreen", "recordApplication", "openAnnotate", "combineImages", "pickColor", "editVideo", "cloudUploads", "openHistory", "shortcutList"]
 hidden_items = []
 
 [capture]
@@ -37,10 +38,13 @@ format = "png"
 include_snapzy = false
 show_cursor = false
 freeze_area = false
+delayed_capture_seconds = 3
 show_selection_area_overlay = true
 reverse_magnifier_zoom_direction = false
 show_magnifier_by_default = false
 show_magnifier_color_panel = true
+magnifier_size = "medium"
+include_window_shadow = true
 
 [capture.scrolling]
 show_hints = true
@@ -68,6 +72,7 @@ open_annotate = false
 [recording]
 format = "mov"
 quality = "high"
+max_resolution = "auto"
 fps = 30
 output_mode = "video"
 capture_system_audio = true
@@ -99,6 +104,8 @@ hold_duration = 0.3
 
 [quick_access]
 enabled = true
+play_sounds = true
+open_in_finder_after_save = true
 position = "bottomRight"
 auto_dismiss = true
 auto_dismiss_delay = 10.0
@@ -108,6 +115,7 @@ drag_drop = true
 two_finger_swipe_to_dismiss = true
 swipe_sensitivity = 1.0
 trackpad_swipe_mode = "inverted"
+pin_zoom_mode = "fixedViewport"
 swipe_left_action = "dismiss"
 swipe_right_action = "dismiss"
 hide_card_when_window_open = true
@@ -216,6 +224,16 @@ enabled = true
 key = ""
 modifiers = []
 
+[shortcuts.global.delayed_capture]
+enabled = true
+key = ""
+modifiers = []
+
+[shortcuts.global.delayed_fullscreen]
+enabled = true
+key = ""
+modifiers = []
+
 [shortcuts.global.annotate]
 enabled = true
 key = "A"
@@ -255,6 +273,11 @@ modifiers = ["command", "shift"]
 enabled = true
 key = "H"
 modifiers = ["command", "shift"]
+
+[shortcuts.global.pick_color]
+enabled = true
+key = ""
+modifiers = []
 
 [shortcuts.overlay.area_application_capture]
 enabled = true
@@ -312,6 +335,7 @@ modifiers = ["command"]
 [shortcuts.annotate_tools]
 disabled = []
 crop = "c"
+cutOut = "x"
 selection = "v"
 rectangle = "r"
 filledRectangle = "f"
