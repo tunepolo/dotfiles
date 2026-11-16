@@ -45,10 +45,11 @@ if week is not None:
 if data.get('rate_limits'):
     import os, time
     path = os.path.expanduser('~/.cache/claude-usage.json')
+    tmp = f'{path}.{os.getpid()}.tmp'  # per-process, so concurrent sessions never share a temp file
     try:
-        with open(path + '.tmp', 'w') as f:
+        with open(tmp, 'w') as f:
             json.dump({'updated_at': int(time.time()), 'rate_limits': data['rate_limits']}, f)
-        os.replace(path + '.tmp', path)
+        os.replace(tmp, path)
     except OSError:
         pass
 
