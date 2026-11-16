@@ -41,4 +41,16 @@ week = data.get('rate_limits', {}).get('seven_day', {}).get('used_percentage')
 if week is not None:
     parts.append(fmt('7d', week))
 
+# Persist the latest rate-limit snapshot so long-running jobs can pause before the quota runs out.
+if data.get('rate_limits'):
+    import os, time
+    path = os.path.expanduser('~/.cache/claude-usage.json')
+    tmp = f'{path}.{os.getpid()}.tmp'  # per-process, so concurrent sessions never share a temp file
+    try:
+        with open(tmp, 'w') as f:
+            json.dump({'updated_at': int(time.time()), 'rate_limits': data['rate_limits']}, f)
+        os.replace(tmp, path)
+    except OSError:
+        pass
+
 print('  '.join(parts), end='')
