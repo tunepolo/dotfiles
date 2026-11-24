@@ -1,0 +1,7 @@
+# Fetched from upstream instead of vendored, so this repo does not redistribute it.
+# Pinned to a commit and verified by checksum; bump both together.
+[".claude/hooks/japanese-guard.py"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/minorun365/claude-code-japanese-guard/2b4965f31b8859ec71dea06395a0aecf15e68da1/hooks/japanese-guard.py"
+    executable = true
+    checksum.sha256 = "fbc2b46beda83a01fd32c3e0fdc7c0d64e45633c3e9f81d57916b7352e5ea1f1"
