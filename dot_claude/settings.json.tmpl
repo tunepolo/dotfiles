@@ -83,6 +83,24 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.config/herdr-app/mods/revive/revive.mjs\" hook",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ~/.config/herdr-app/mods/redpen/label-session.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -104,6 +122,17 @@
           {
             "type": "command",
             "command": "/usr/bin/python3 \"$HOME/.claude/hooks/japanese-guard.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.config/herdr-app/mods/revive/revive.mjs\" hook",
             "timeout": 10
           }
         ]
